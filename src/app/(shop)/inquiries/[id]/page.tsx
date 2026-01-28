@@ -1,15 +1,15 @@
 /**
  * Inquiry Detail Page
  *
- * 문의 상세 페이지 - Neo-Brutalism 스타일
+ * Inquiry Detail Page - Neo-Brutalism Style
  *
  * Features:
- * - 문의 상세 내용 표시
- * - 비밀글 접근 제어 (작성자/관리자만)
- * - 답변 표시
- * - 조회수 증가
- * - 작성자 정보
- * - 상품 정보
+ * - Display inquiry details
+ * - Secret post access control (author/admin only)
+ * - Display answer
+ * - Increase view count
+ * - Author info
+ * - Product info
  *
  * URL: /inquiries/[id]
  */
@@ -18,7 +18,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
-import { ko } from 'date-fns/locale';
+import { en } from 'date-fns/locale';
 import { ArrowLeft, Lock, Eye, MessageCircle, Clock, User } from 'lucide-react';
 import {
   INQUIRY_CATEGORIES,
@@ -35,7 +35,7 @@ interface InquiryDetailPageProps {
 }
 
 /**
- * 카테고리별 색상 매핑 (Neo-Brutalism)
+ * Category color mapping (Neo-Brutalism)
  */
 const CATEGORY_COLORS: Record<InquiryCategoryType, string> = {
   product: 'bg-neo-blue text-white',
@@ -45,16 +45,16 @@ const CATEGORY_COLORS: Record<InquiryCategoryType, string> = {
 };
 
 /**
- * 문의 상세 페이지
+ * Inquiry Detail Page
  */
 export default async function InquiryDetailPage({ params }: InquiryDetailPageProps) {
   const { id } = await params;
 
-  // 세션 확인 (관리자 여부)
+  // Session check (admin status)
   const session = await auth();
   const isAdmin = session?.user?.role === 'admin';
 
-  // API 호출
+  // API Call
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const response = await fetch(`${baseUrl}/api/inquiries/${id}`, {
     cache: 'no-store',
@@ -70,26 +70,26 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
   const data = await response.json();
   const { inquiry } = data;
 
-  // 답변 완료 여부
+  // Answer completion status
   const isAnswered = inquiry.status === 'answered';
 
-  // 상대 시간 포맷
+  // Relative time format
   const createdAt = formatDistanceToNow(new Date(inquiry.created_at), {
     addSuffix: true,
-    locale: ko,
+    locale: en,
   });
 
   const answeredAt = inquiry.answered_at
     ? formatDistanceToNow(new Date(inquiry.answered_at), {
         addSuffix: true,
-        locale: ko,
+        locale: en,
       })
     : null;
 
   return (
     <div className="min-h-screen bg-neo-white p-4 py-8 sm:p-8">
       <div className="max-w-4xl mx-auto">
-        {/* 뒤로가기 */}
+        {/* Back */}
         <Link
           href="/inquiries"
           className="
@@ -100,14 +100,14 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
           "
         >
           <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-          목록으로
+          Back to List
         </Link>
 
-        {/* 문의 카드 */}
+        {/* Inquiry Card */}
         <div className="bg-neo-white border-3 border-neo-black shadow-neo">
-          {/* 헤더 */}
+          {/* Header */}
           <div className="p-6 border-b-3 border-neo-black">
-            {/* 카테고리 & 상태 */}
+            {/* Category & Status */}
             <div className="flex items-center gap-3 flex-wrap mb-4">
               <span
                 className={`
@@ -135,20 +135,20 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
               {inquiry.is_private && (
                 <span className="flex items-center gap-1 px-3 py-1 border-2 border-neo-black bg-neo-black/10 text-xs font-bold">
                   <Lock className="h-3 w-3" strokeWidth={2.5} />
-                  비밀글
+                  Secret
                 </span>
               )}
             </div>
 
-            {/* 제목 */}
+            {/* Title */}
             <h1 className="text-2xl sm:text-3xl font-black text-neo-black mb-4">
               {inquiry.title}
             </h1>
 
-            {/* 메타 정보 */}
+            {/* Meta Info */}
             <div className="flex items-center justify-between flex-wrap gap-4 text-sm">
               <div className="flex items-center gap-4">
-                {/* 작성자 */}
+                {/* Author */}
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 border-2 border-neo-black bg-neo-cream flex items-center justify-center font-black text-sm">
                     {inquiry.author?.nickname?.[0] || inquiry.author?.email[0].toUpperCase()}
@@ -158,14 +158,14 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
                   </span>
                 </div>
 
-                {/* 작성 시간 */}
+                {/* Created Time */}
                 <div className="flex items-center gap-1 text-neo-black/60">
                   <Clock className="h-4 w-4" strokeWidth={2} />
                   <span className="font-medium">{createdAt}</span>
                 </div>
               </div>
 
-              {/* 조회수 */}
+              {/* View Count */}
               <div className="flex items-center gap-1 px-3 py-1 border-2 border-neo-black bg-neo-cream">
                 <Eye className="h-4 w-4" strokeWidth={2} />
                 <span className="font-bold">{inquiry.view_count}</span>
@@ -173,12 +173,12 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
             </div>
           </div>
 
-          {/* 본문 */}
+          {/* Body */}
           <div className="p-6">
-            {/* 상품 정보 (있는 경우) */}
+            {/* Product Info (if exists) */}
             {inquiry.product && (
               <div className="mb-6 p-4 border-3 border-neo-black bg-neo-cream">
-                <p className="text-xs font-bold text-neo-black/60 uppercase mb-3">문의 상품</p>
+                <p className="text-xs font-bold text-neo-black/60 uppercase mb-3">Inquired Product</p>
                 <Link
                   href={`/products/${inquiry.product.slug}`}
                   className="
@@ -198,27 +198,27 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
                   )}
                   <div>
                     <p className="font-bold text-neo-black">{inquiry.product.name}</p>
-                    <p className="text-sm font-medium text-neo-blue">상품 보러가기 →</p>
+                    <p className="text-sm font-medium text-neo-blue">View Product →</p>
                   </div>
                 </Link>
               </div>
             )}
 
-            {/* 문의 내용 */}
+            {/* Inquiry Content */}
             <div className="min-h-[100px] text-neo-black whitespace-pre-wrap leading-relaxed">
               {inquiry.content}
             </div>
           </div>
 
-          {/* 답변 섹션 */}
+          {/* Answer Section */}
           {isAnswered && inquiry.answer && (
             <div className="border-t-3 border-neo-black bg-neo-green/20 p-6">
               <div className="flex items-center gap-2 mb-4">
                 <MessageCircle className="h-5 w-5 text-neo-black" strokeWidth={2.5} />
-                <h2 className="text-lg font-black text-neo-black uppercase">답변</h2>
+                <h2 className="text-lg font-black text-neo-black uppercase">Answer</h2>
               </div>
 
-              {/* 답변자 정보 */}
+              {/* Answerer Info */}
               {inquiry.answerer && (
                 <div className="flex items-center gap-3 mb-4 text-sm">
                   <div className="w-6 h-6 border-2 border-neo-black bg-neo-green flex items-center justify-center font-bold text-xs">
@@ -233,7 +233,7 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
                 </div>
               )}
 
-              {/* 답변 내용 */}
+              {/* Answer Content */}
               <div className="p-4 border-3 border-neo-black bg-neo-white shadow-neo-sm">
                 <div className="text-neo-black whitespace-pre-wrap leading-relaxed">
                   {inquiry.answer}
@@ -242,22 +242,22 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
             </div>
           )}
 
-          {/* 답변 대기 중 메시지 (일반 사용자용) */}
+          {/* Pending Answer Message (for general users) */}
           {!isAnswered && !isAdmin && (
             <div className="border-t-3 border-neo-black bg-neo-yellow/30 p-8 text-center">
               <div className="w-12 h-12 mx-auto mb-4 border-3 border-neo-black bg-neo-yellow flex items-center justify-center">
                 <Clock className="h-6 w-6 text-neo-black" strokeWidth={2.5} />
               </div>
               <p className="font-bold text-neo-black text-lg">
-                관리자의 답변을 기다리고 있습니다.
+                Waiting for admin response.
               </p>
               <p className="text-sm text-neo-black/60 mt-2 font-medium">
-                빠른 시일 내에 답변드리겠습니다.
+                We will respond as soon as possible.
               </p>
             </div>
           )}
 
-          {/* 관리자 답변 폼 */}
+          {/* Admin Answer Form */}
           {isAdmin && (
             <InquiryAnswerForm
               inquiryId={id}
@@ -266,7 +266,7 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
           )}
         </div>
 
-        {/* 액션 버튼 */}
+        {/* Action Buttons */}
         <div className="flex justify-center gap-3 mt-8">
           <Link
             href="/inquiries"
@@ -287,7 +287,7 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
               transition-all duration-150
             "
           >
-            목록으로
+            Back to List
           </Link>
         </div>
       </div>

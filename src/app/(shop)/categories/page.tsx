@@ -8,10 +8,10 @@ import { Folder, Package } from 'lucide-react';
 /**
  * Categories Page
  *
- * 카테고리 목록 페이지
- * - Neo-Brutalism 스타일의 카테고리 카드
- * - 상품 개수 표시
- * - 카테고리별 상품 페이지로 이동
+ * Categories List Page
+ * - Category cards in Neo-Brutalism style
+ * - Display product count
+ * - Navigate to category-specific product pages
  */
 
 export default function CategoriesPage() {
@@ -42,10 +42,10 @@ export default function CategoriesPage() {
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-neo-black mb-4">
-            카테고리
+            Categories
           </h1>
           <p className="text-lg text-neo-gray">
-            원하는 카테고리를 선택하여 상품을 찾아보세요
+            Select a category to browse products
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export default function CategoriesPage() {
         {error && !isLoading && (
           <div className="rounded-lg border-4 border-neo-pink bg-pink-50 p-8 text-center">
             <p className="text-xl font-bold text-neo-pink">
-              카테고리를 불러오는데 실패했습니다
+              Failed to load categories
             </p>
             <p className="mt-2 text-neo-gray">{error}</p>
           </div>
@@ -71,7 +71,7 @@ export default function CategoriesPage() {
           <div className="rounded-lg border-4 border-neo-black bg-gray-50 p-12 text-center">
             <Folder className="w-16 h-16 mx-auto mb-4 text-neo-gray" />
             <p className="text-2xl font-bold text-neo-gray">
-              등록된 카테고리가 없습니다
+              No categories registered
             </p>
           </div>
         )}
@@ -106,7 +106,7 @@ export default function CategoriesPage() {
                   {/* Product Count */}
                   <div className="flex items-center gap-2 text-sm font-bold text-neo-gray">
                     <Package className="w-4 h-4" strokeWidth={2.5} />
-                    <span>{category.product_count || 0}개 상품</span>
+                    <span>{category.product_count || 0} products</span>
                   </div>
                 </div>
               </Link>

@@ -3,11 +3,11 @@
 /**
  * Products Page
  *
- * P2-T2.4: 상품 목록 페이지
- * - 반응형 그리드 레이아웃 (1/2/3/4 cols)
- * - 카테고리 필터 (사이드바)
- * - 정렬 옵션 (인기순/최신순/가격순)
- * - 페이지네이션
+ * P2-T2.4: Product List Page
+ * - Responsive grid layout (1/2/3/4 cols)
+ * - Category filter (sidebar)
+ * - Sort options (popular/newest/price)
+ * - Pagination
  */
 
 import { useState, useEffect, Suspense, useMemo } from 'react';
@@ -54,7 +54,7 @@ function ProductsContent() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(categoryFromUrl);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
-  // URL 파라미터 변경 시 카테고리 업데이트
+  // Update category when URL parameter changes
   useEffect(() => {
     setSelectedCategory(categoryFromUrl);
     setParams((prev) => ({
@@ -129,18 +129,18 @@ function ProductsContent() {
 
   // Get primary image URL
   const getProductThumbnail = (product: any): string | undefined => {
-    // API에서 직접 thumbnail 필드를 제공하는 경우
+    // If API directly provides thumbnail field
     if (product.thumbnail) {
       return product.thumbnail;
     }
-    // images 배열에서 추출
+    // Extract from images array
     if (product.images && product.images.length > 0) {
       const firstImage = product.images[0];
-      // 이미지가 객체인 경우 url 필드 추출
+      // If image is object, extract url field
       if (typeof firstImage === 'object' && firstImage.url) {
         return firstImage.url;
       }
-      // 문자열인 경우 그대로 반환
+      // If string, return as is
       if (typeof firstImage === 'string') {
         return firstImage;
       }
@@ -155,7 +155,7 @@ function ProductsContent() {
         role="complementary"
         className="hidden w-64 shrink-0 border-r-4 border-black bg-white p-6 lg:block"
       >
-        <h2 className="mb-6 text-xl font-bold">카테고리</h2>
+        <h2 className="mb-6 text-xl font-bold">Categories</h2>
 
         {isLoadingCategories ? (
           <div className="flex items-center justify-center py-8">
@@ -173,7 +173,7 @@ function ProductsContent() {
                     : 'bg-white hover:bg-gray-100'
                 }`}
               >
-                전체
+                All
               </button>
             </li>
 
@@ -203,25 +203,25 @@ function ProductsContent() {
       <main role="main" className="flex-1 p-6">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <h1 className="text-3xl font-bold">상품 목록</h1>
+          <h1 className="text-3xl font-bold">Products</h1>
 
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2">
             <label htmlFor="sort-select" className="font-bold">
-              정렬:
+              Sort:
             </label>
             <select
               id="sort-select"
               role="combobox"
-              aria-label="정렬"
+              aria-label="Sort"
               value={params.sort || 'popular'}
               onChange={(e) => handleSortChange(e.target.value as SortOption)}
               className="rounded-lg border-2 border-black bg-white px-4 py-2 font-bold shadow-neo transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-neo-sm"
             >
-              <option value="popular">인기순</option>
-              <option value="newest">최신순</option>
-              <option value="price_asc">가격 낮은순</option>
-              <option value="price_desc">가격 높은순</option>
+              <option value="popular">Popular</option>
+              <option value="newest">Newest</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
             </select>
           </div>
         </div>
@@ -240,7 +240,7 @@ function ProductsContent() {
         {error && !isLoading && (
           <div className="rounded-lg border-4 border-red-500 bg-red-50 p-8 text-center">
             <p className="text-xl font-bold text-red-700">
-              상품을 불러오는데 실패했습니다
+              Failed to load products
             </p>
             <p className="mt-2 text-red-600">{error.message}</p>
           </div>
@@ -249,11 +249,11 @@ function ProductsContent() {
         {/* Empty State */}
         {!isLoading && !error && sortedProducts.length === 0 && (
           <div className="rounded-lg border-4 border-black bg-gray-50 p-12 text-center">
-            <p className="text-2xl font-bold text-gray-700">상품이 없습니다</p>
+            <p className="text-2xl font-bold text-gray-700">No products found</p>
             <p className="mt-2 text-gray-600">
               {selectedCategory
-                ? '다른 카테고리를 선택해보세요'
-                : '곧 새로운 상품이 추가될 예정입니다'}
+                ? 'Try selecting a different category'
+                : 'New products will be added soon'}
             </p>
           </div>
         )}
@@ -278,7 +278,7 @@ function ProductsContent() {
             {pagination.totalPages > 1 && (
               <nav
                 role="navigation"
-                aria-label="페이지네이션"
+                aria-label="Pagination"
                 className="mt-12 flex items-center justify-center gap-2"
               >
                 {/* Previous Button */}
@@ -288,7 +288,7 @@ function ProductsContent() {
                   variant="outline"
                   className="border-2 border-black font-bold shadow-neo disabled:opacity-50"
                 >
-                  이전
+                  Previous
                 </Button>
 
                 {/* Page Numbers */}
@@ -335,7 +335,7 @@ function ProductsContent() {
                   variant="outline"
                   className="border-2 border-black font-bold shadow-neo disabled:opacity-50"
                 >
-                  다음
+                  Next
                 </Button>
               </nav>
             )}

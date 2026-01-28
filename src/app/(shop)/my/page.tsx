@@ -1,12 +1,12 @@
 /**
  * Profile Page
  *
- * P2-T2.1: NextAuth.js 기반 마이페이지
- * - NextAuth useSession 사용
- * - 프로필 정보 표시 (이메일, 닉네임, 아바타)
- * - 닉네임 수정 폼
- * - 로그아웃 버튼
- * - 반응형 Neo-Brutalism 디자인
+ * P2-T2.1: NextAuth.js based My Page
+ * - Uses NextAuth useSession
+ * - Display profile info (email, nickname, avatar)
+ * - Nickname edit form
+ * - Logout button
+ * - Responsive Neo-Brutalism design
  */
 
 'use client';
@@ -21,7 +21,7 @@ import { z } from 'zod';
 import Image from 'next/image';
 
 // Nickname validation schema
-const nicknameSchema = z.string().min(2, '닉네임은 최소 2자 이상이어야 합니다');
+const nicknameSchema = z.string().min(2, 'Nickname must be at least 2 characters');
 
 interface Profile {
   id: string;
@@ -50,18 +50,18 @@ export default function ProfilePage() {
   // Load user and profile on mount
   useEffect(() => {
     async function loadProfile() {
-      // 인증되지 않은 경우 로그인 페이지로 리다이렉트
+      // Redirect to login if not authenticated
       if (status === 'unauthenticated') {
         router.push('/auth/login?redirect=/my');
         return;
       }
 
-      // 로딩 중이면 대기
+      // Wait while loading
       if (status === 'loading') {
         return;
       }
 
-      // 세션이 있으면 프로필 로드
+      // Load profile if session exists
       if (status === 'authenticated' && session?.user) {
         try {
           const res = await fetch(`/api/profile/${session.user.id}`);
@@ -71,7 +71,7 @@ export default function ProfilePage() {
             setProfile(data);
             setEditedNickname(data.nickname || '');
           } else if (res.status === 404) {
-            // 프로필이 없는 경우 세션 정보로 기본 표시
+            // Display basic info from session if profile not found
             setProfile({
               id: session.user.id,
               email: session.user.email,
@@ -82,11 +82,11 @@ export default function ProfilePage() {
               updated_at: new Date().toISOString(),
             });
           } else {
-            throw new Error('프로필을 불러올 수 없습니다.');
+            throw new Error('Failed to load profile.');
           }
         } catch (err: any) {
           console.error('Error loading profile:', err);
-          setError(err.message || '프로필을 불러오는데 실패했습니다');
+          setError(err.message || 'Failed to load profile');
         } finally {
           setIsLoading(false);
         }
@@ -97,7 +97,7 @@ export default function ProfilePage() {
   }, [status, session, router]);
 
   /**
-   * 수정 모드 진입
+   * Enter edit mode
    */
   const handleEditClick = () => {
     setIsEditMode(true);
@@ -106,7 +106,7 @@ export default function ProfilePage() {
   };
 
   /**
-   * 수정 취소
+   * Cancel edit
    */
   const handleCancelEdit = () => {
     setIsEditMode(false);
@@ -115,7 +115,7 @@ export default function ProfilePage() {
   };
 
   /**
-   * 닉네임 저장
+   * Save nickname
    */
   const handleSaveNickname = async () => {
     try {
@@ -125,12 +125,12 @@ export default function ProfilePage() {
       // Validate nickname
       const validation = nicknameSchema.safeParse(editedNickname);
       if (!validation.success) {
-        setError(validation.error.issues[0]?.message || '닉네임은 최소 2자 이상이어야 합니다');
+        setError(validation.error.issues[0]?.message || 'Nickname must be at least 2 characters');
         return;
       }
 
       if (!session?.user?.id) {
-        setError('사용자 정보를 찾을 수 없습니다');
+        setError('User information not found');
         return;
       }
 
@@ -147,7 +147,7 @@ export default function ProfilePage() {
 
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.error || '닉네임 변경에 실패했습니다.');
+        throw new Error(errorData.error || 'Failed to update nickname.');
       }
 
       const updatedProfile = await res.json();
@@ -160,17 +160,17 @@ export default function ProfilePage() {
         });
       }
 
-      setSuccessMessage('닉네임이 변경되었습니다');
+      setSuccessMessage('Nickname has been updated');
       setIsEditMode(false);
     } catch (err: any) {
-      setError(err.message || '닉네임 변경 중 오류가 발생했습니다');
+      setError(err.message || 'An error occurred while updating nickname');
     } finally {
       setIsSaving(false);
     }
   };
 
   /**
-   * 로그아웃 핸들러
+   * Logout handler
    */
   const handleLogout = async () => {
     try {
@@ -183,7 +183,7 @@ export default function ProfilePage() {
         redirect: true,
       });
     } catch (err: any) {
-      setError(err.message || '로그아웃 중 오류가 발생했습니다');
+      setError(err.message || 'An error occurred during logout');
       setIsLoggingOut(false);
     }
   };
@@ -194,7 +194,7 @@ export default function ProfilePage() {
       <div className="min-h-screen bg-neo-white flex items-center justify-center p-4">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-neo-black mx-auto mb-4" strokeWidth={2.5} />
-          <p className="text-lg font-bold text-neo-black">로딩 중...</p>
+          <p className="text-lg font-bold text-neo-black">Loading...</p>
         </div>
       </div>
     );
@@ -214,10 +214,10 @@ export default function ProfilePage() {
         {/* Page Title */}
         <div className="mb-8">
           <h1 className="text-4xl sm:text-5xl font-black text-neo-black uppercase tracking-tight">
-            프로필
+            Profile
           </h1>
           <p className="text-base text-neo-black/70 mt-2">
-            내 정보를 관리하세요
+            Manage your information
           </p>
         </div>
 
@@ -278,7 +278,7 @@ export default function ProfilePage() {
                 {profile.avatar_url ? (
                   <Image
                     src={avatarUrl}
-                    alt="프로필 이미지"
+                    alt="Profile image"
                     width={128}
                     height={128}
                     className="w-full h-full object-cover"
@@ -296,17 +296,17 @@ export default function ProfilePage() {
                 {/* Nickname/Display Name */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wide text-neo-black/60 mb-1">
-                    닉네임
+                    Nickname
                   </label>
                   {isEditMode ? (
                     <div>
                       <label htmlFor="nickname" className="sr-only">
-                        닉네임
+                        Nickname
                       </label>
                       <Input
                         id="nickname"
                         type="text"
-                        placeholder="닉네임을 입력하세요"
+                        placeholder="Enter your nickname"
                         value={editedNickname}
                         onChange={(e) => setEditedNickname(e.target.value)}
                         disabled={isSaving}
@@ -334,7 +334,7 @@ export default function ProfilePage() {
                     </div>
                   ) : (
                     <p className="text-2xl font-black text-neo-black truncate" data-testid="profile-display-name">
-                      {profile.nickname || '(닉네임 없음)'}
+                      {profile.nickname || '(No nickname)'}
                     </p>
                   )}
                 </div>
@@ -342,7 +342,7 @@ export default function ProfilePage() {
                 {/* Email */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wide text-neo-black/60 mb-1">
-                    이메일
+                    Email
                   </label>
                   <p className="text-base font-medium text-neo-black truncate">
                     {profile.email}
@@ -352,7 +352,7 @@ export default function ProfilePage() {
                 {/* Role */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wide text-neo-black/60 mb-1">
-                    역할
+                    Role
                   </label>
                   <div
                     className="
@@ -365,7 +365,7 @@ export default function ProfilePage() {
                       text-xs font-bold uppercase
                     "
                   >
-                    {profile.role === 'admin' ? '관리자' : '일반 회원'}
+                    {profile.role === 'admin' ? 'Admin' : 'Customer'}
                   </div>
                 </div>
               </div>
@@ -409,12 +409,12 @@ export default function ProfilePage() {
                   {isSaving ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" strokeWidth={2.5} />
-                      <span>저장 중...</span>
+                      <span>Saving...</span>
                     </>
                   ) : (
                     <>
                       <Check className="w-5 h-5" strokeWidth={2.5} />
-                      <span>저장</span>
+                      <span>Save</span>
                     </>
                   )}
                 </button>
@@ -451,7 +451,7 @@ export default function ProfilePage() {
                   "
                 >
                   <X className="w-5 h-5" strokeWidth={2.5} />
-                  <span>취소</span>
+                  <span>Cancel</span>
                 </button>
               </>
             ) : (
@@ -481,7 +481,7 @@ export default function ProfilePage() {
                   "
                 >
                   <Edit2 className="w-5 h-5" strokeWidth={2.5} />
-                  <span>수정</span>
+                  <span>Edit</span>
                 </button>
 
                 {/* Logout Button */}
@@ -517,12 +517,12 @@ export default function ProfilePage() {
                   {isLoggingOut ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" strokeWidth={2.5} />
-                      <span>로그아웃 중...</span>
+                      <span>Logging out...</span>
                     </>
                   ) : (
                     <>
                       <LogOut className="w-5 h-5" strokeWidth={2.5} />
-                      <span>로그아웃</span>
+                      <span>Logout</span>
                     </>
                   )}
                 </button>
@@ -542,7 +542,7 @@ export default function ProfilePage() {
           "
         >
           <h2 className="text-lg font-black text-neo-black uppercase p-4 border-b-3 border-neo-black bg-neo-cream">
-            내 활동
+            My Activity
           </h2>
           <div className="divide-y-2 divide-neo-black/20">
             {/* Orders Link */}
@@ -562,8 +562,8 @@ export default function ProfilePage() {
                   <Package className="w-5 h-5 text-white" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <p className="font-bold text-neo-black">주문 현황</p>
-                  <p className="text-xs text-neo-black/60">주문 내역 및 결제 상태 확인</p>
+                  <p className="font-bold text-neo-black">Order Status</p>
+                  <p className="text-xs text-neo-black/60">Check order history and payment status</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-neo-black/40 group-hover:text-neo-black transition-colors" strokeWidth={2.5} />
@@ -586,8 +586,8 @@ export default function ProfilePage() {
                   <Download className="w-5 h-5 text-white" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <p className="font-bold text-neo-black">다운로드 센터</p>
-                  <p className="text-xs text-neo-black/60">구매한 상품 다운로드</p>
+                  <p className="font-bold text-neo-black">Download Center</p>
+                  <p className="text-xs text-neo-black/60">Download purchased products</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-neo-black/40 group-hover:text-neo-black transition-colors" strokeWidth={2.5} />
@@ -605,19 +605,19 @@ export default function ProfilePage() {
           "
         >
           <h2 className="text-lg font-black text-neo-black uppercase mb-4">
-            계정 정보
+            Account Info
           </h2>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-neo-black/60 font-bold">가입일</span>
+              <span className="text-neo-black/60 font-bold">Member Since</span>
               <span className="text-neo-black font-medium">
-                {new Date(profile.created_at).toLocaleDateString('ko-KR')}
+                {new Date(profile.created_at).toLocaleDateString('en-US')}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neo-black/60 font-bold">마지막 수정</span>
+              <span className="text-neo-black/60 font-bold">Last Updated</span>
               <span className="text-neo-black font-medium">
-                {new Date(profile.updated_at).toLocaleDateString('ko-KR')}
+                {new Date(profile.updated_at).toLocaleDateString('en-US')}
               </span>
             </div>
           </div>

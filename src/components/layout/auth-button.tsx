@@ -1,8 +1,8 @@
 /**
  * Auth Button Component
- * 로그인 상태에 따라 다른 버튼 표시
- * 관리자인 경우 관리자 메뉴 표시
- * NextAuth.js 기반
+ * Display different buttons based on login status
+ * Show admin menu for admin users
+ * Based on NextAuth.js
  */
 
 'use client';
@@ -24,12 +24,12 @@ export function AuthButton() {
 
   const handleSignOut = async () => {
     setShowMenu(false);
-    // 로그아웃 시 장바구니 초기화 (다른 사용자의 장바구니가 남지 않도록)
+    // Clear cart on logout (to prevent other user's cart from remaining)
     clearCart();
     await signOut({ callbackUrl: '/' });
   };
 
-  // 로딩 상태
+  // Loading state
   if (isLoading) {
     return (
       <div className="flex items-center gap-2 px-3 sm:px-6 h-10 sm:h-12 bg-neo-black/10 border-3 border-neo-black/30 animate-pulse">
@@ -38,9 +38,9 @@ export function AuthButton() {
     );
   }
 
-  // 로그인 상태
+  // Logged in state
   if (isLoggedIn && session?.user) {
-    const displayName = session.user.name || session.user.email?.split('@')[0] || '사용자';
+    const displayName = session.user.name || session.user.email?.split('@')[0] || 'User';
 
     return (
       <div className="relative">
@@ -60,7 +60,7 @@ export function AuthButton() {
           </span>
         </button>
 
-        {/* 드롭다운 메뉴 */}
+        {/* Dropdown menu */}
         {showMenu && (
           <>
             <div
@@ -68,7 +68,7 @@ export function AuthButton() {
               onClick={() => setShowMenu(false)}
             />
             <div className="absolute right-0 top-full mt-2 w-48 bg-neo-white border-3 border-neo-black shadow-neo z-50">
-              {/* 관리자 메뉴 */}
+              {/* Admin menu */}
               {isAdmin && (
                 <Link
                   href="/admin"
@@ -76,7 +76,7 @@ export function AuthButton() {
                   className="flex items-center gap-2 px-4 py-3 font-bold text-white bg-neo-pink hover:bg-neo-pink/80 transition-colors border-b-2 border-neo-black"
                 >
                   <Shield className="w-5 h-5" strokeWidth={2.5} />
-                  관리자 대시보드
+                  Admin Dashboard
                 </Link>
               )}
               <Link
@@ -85,7 +85,7 @@ export function AuthButton() {
                 className="flex items-center gap-2 px-4 py-3 font-bold text-neo-black hover:bg-neo-yellow transition-colors border-b-2 border-neo-black"
               >
                 <User className="w-5 h-5" strokeWidth={2.5} />
-                마이페이지
+                My Page
               </Link>
               <Link
                 href="/my/orders"
@@ -93,7 +93,7 @@ export function AuthButton() {
                 className="flex items-center gap-2 px-4 py-3 font-bold text-neo-black hover:bg-neo-yellow transition-colors border-b-2 border-neo-black"
               >
                 <Package className="w-5 h-5" strokeWidth={2.5} />
-                주문 현황
+                Orders
               </Link>
               <Link
                 href="/my/downloads"
@@ -101,7 +101,7 @@ export function AuthButton() {
                 className="flex items-center gap-2 px-4 py-3 font-bold text-neo-black hover:bg-neo-yellow transition-colors border-b-2 border-neo-black"
               >
                 <Download className="w-5 h-5" strokeWidth={2.5} />
-                다운로드 센터
+                Downloads
               </Link>
               <Link
                 href="/my/settings"
@@ -109,14 +109,14 @@ export function AuthButton() {
                 className="flex items-center gap-2 px-4 py-3 font-bold text-neo-black hover:bg-neo-yellow transition-colors border-b-2 border-neo-black"
               >
                 <Settings className="w-5 h-5" strokeWidth={2.5} />
-                설정
+                Settings
               </Link>
               <button
                 onClick={handleSignOut}
                 className="flex items-center gap-2 w-full px-4 py-3 font-bold text-neo-black hover:bg-neo-black hover:text-white transition-colors"
               >
                 <LogOut className="w-5 h-5" strokeWidth={2.5} />
-                로그아웃
+                Logout
               </button>
             </div>
           </>
@@ -125,14 +125,14 @@ export function AuthButton() {
     );
   }
 
-  // 비로그인 상태
+  // Logged out state
   return (
     <Link
       href="/login"
       className="flex items-center gap-2 px-3 sm:px-6 h-10 sm:h-12 bg-neo-blue text-white border-3 border-neo-black shadow-neo font-bold uppercase tracking-wide hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-neo-sm active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-150"
     >
       <User className="w-5 h-5" strokeWidth={2.5} />
-      <span className="hidden sm:inline">로그인</span>
+      <span className="hidden sm:inline">Login</span>
     </Link>
   );
 }

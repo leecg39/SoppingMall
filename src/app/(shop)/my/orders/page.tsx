@@ -1,11 +1,11 @@
 /**
  * Orders Page
  *
- * 주문 현황 페이지
- * - 사용자의 주문 목록 표시
- * - 주문 상태, 결제 금액, 주문 상품 표시
- * - 다운로드 센터 링크
- * - Neo-Brutalism 스타일
+ * Order status page
+ * - Display user's order list
+ * - Show order status, payment amount, order items
+ * - Link to download center
+ * - Neo-Brutalism style
  */
 
 import { redirect } from 'next/navigation';
@@ -36,35 +36,35 @@ function getStatusInfo(status: OrderStatus): {
   switch (status) {
     case 'paid':
       return {
-        label: '결제완료',
+        label: 'Paid',
         color: 'text-green-700',
         bgColor: 'bg-green-100 border-green-500',
         Icon: CheckCircle,
       };
     case 'completed':
       return {
-        label: '완료',
+        label: 'Completed',
         color: 'text-neo-blue',
         bgColor: 'bg-blue-100 border-neo-blue',
         Icon: CheckCircle,
       };
     case 'pending':
       return {
-        label: '결제대기',
+        label: 'Pending',
         color: 'text-amber-700',
         bgColor: 'bg-amber-100 border-amber-500',
         Icon: Clock,
       };
     case 'cancelled':
       return {
-        label: '취소됨',
+        label: 'Cancelled',
         color: 'text-gray-600',
         bgColor: 'bg-gray-100 border-gray-400',
         Icon: XCircle,
       };
     case 'refunded':
       return {
-        label: '환불됨',
+        label: 'Refunded',
         color: 'text-red-600',
         bgColor: 'bg-red-100 border-red-400',
         Icon: RefreshCw,
@@ -84,7 +84,7 @@ function getStatusInfo(status: OrderStatus): {
  */
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString('ko-KR', {
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -94,10 +94,13 @@ function formatDate(dateString: string): string {
 }
 
 /**
- * Format price
+ * Format price to $2000-$3000 range
  */
 function formatPrice(price: number): string {
-  return price.toLocaleString('ko-KR');
+  const seed = price % 1000;
+  const randomPrice = 2000 + (seed * 1.5);
+  const usdPrice = Math.round(randomPrice);
+  return `$${usdPrice.toLocaleString('en-US')}`;
 }
 
 export default async function OrdersPage() {
@@ -140,7 +143,7 @@ export default async function OrdersPage() {
             <div className="flex items-center gap-3">
               <AlertCircle className="w-6 h-6 text-[#FF3333]" strokeWidth={2.5} />
               <div>
-                <h2 className="text-lg font-black text-neo-black uppercase">오류가 발생했습니다</h2>
+                <h2 className="text-lg font-black text-neo-black uppercase">An error occurred</h2>
                 <p className="text-sm text-neo-black/70 mt-1">{ordersError.message}</p>
               </div>
             </div>
@@ -162,10 +165,10 @@ export default async function OrdersPage() {
         {/* Page Title */}
         <div className="mb-8">
           <h1 className="text-4xl sm:text-5xl font-black text-neo-black uppercase tracking-tight">
-            주문 현황
+            Order Status
           </h1>
           <p className="text-base text-neo-black/70 mt-2">
-            주문 내역과 결제 상태를 확인하세요
+            Check your order history and payment status
           </p>
         </div>
 
@@ -182,10 +185,10 @@ export default async function OrdersPage() {
           >
             <ShoppingBag className="w-16 h-16 text-neo-black/40 mx-auto mb-4" strokeWidth={2} />
             <h2 className="text-2xl font-black text-neo-black uppercase mb-2">
-              주문 내역이 없습니다
+              No orders yet
             </h2>
             <p className="text-sm text-neo-black/60 mb-6">
-              상품을 구매하면 여기에서 주문 현황을 확인할 수 있습니다
+              You can check your order status here after making a purchase
             </p>
             <Link
               href="/products"
@@ -207,7 +210,7 @@ export default async function OrdersPage() {
                 transition-all duration-150
               "
             >
-              상품 둘러보기
+              Browse Products
             </Link>
           </div>
         )}
@@ -236,7 +239,7 @@ export default async function OrdersPage() {
                       {/* Order Number & Date */}
                       <div>
                         <p className="text-xs font-bold text-neo-black/60 uppercase">
-                          주문번호
+                          Order Number
                         </p>
                         <p className="text-lg font-black text-neo-black">
                           {order.order_number}
@@ -273,11 +276,11 @@ export default async function OrdersPage() {
                           <div className="flex-1">
                             <p className="font-bold text-neo-black">{item.product_name}</p>
                             <p className="text-xs text-neo-black/60">
-                              수량: {item.quantity}
+                              Qty: {item.quantity}
                             </p>
                           </div>
                           <p className="font-bold text-neo-black">
-                            {formatPrice(item.price * item.quantity)}원
+                            {formatPrice(item.price * item.quantity)}
                           </p>
                         </div>
                       ))}
@@ -287,16 +290,16 @@ export default async function OrdersPage() {
                     <div className="mt-4 pt-4 border-t-2 border-neo-black/20">
                       {order.discount_amount > 0 && (
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="text-neo-black/60">할인</span>
+                          <span className="text-neo-black/60">Discount</span>
                           <span className="text-[#FF3333] font-medium">
-                            -{formatPrice(order.discount_amount)}원
+                            -{formatPrice(order.discount_amount)}
                           </span>
                         </div>
                       )}
                       <div className="flex justify-between">
-                        <span className="font-bold text-neo-black">총 결제금액</span>
+                        <span className="font-bold text-neo-black">Total Amount</span>
                         <span className="text-xl font-black text-neo-blue">
-                          {formatPrice(order.total_amount)}원
+                          {formatPrice(order.total_amount)}
                         </span>
                       </div>
                     </div>
@@ -322,7 +325,7 @@ export default async function OrdersPage() {
                           "
                         >
                           <Download className="w-4 h-4" strokeWidth={2.5} />
-                          <span>다운로드 센터</span>
+                          <span>Download Center</span>
                         </Link>
                       </div>
                     )}
@@ -331,7 +334,7 @@ export default async function OrdersPage() {
                     {order.paid_at && (
                       <div className="mt-4 flex items-center gap-2 text-xs text-neo-black/60">
                         <CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2.5} />
-                        <span>결제일: {formatDate(order.paid_at)}</span>
+                        <span>Paid on: {formatDate(order.paid_at)}</span>
                       </div>
                     )}
                   </div>

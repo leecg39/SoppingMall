@@ -1,5 +1,5 @@
 /**
- * Inquiries List Page - Neo-Brutalism 디자인
+ * Inquiries List Page - Neo-Brutalism Design
  */
 
 import { Suspense } from 'react';
@@ -31,7 +31,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
   const page = parseInt(params.page || '1');
   const search = params.search;
 
-  // API 호출
+  // API Call
   const queryParams = new URLSearchParams();
   if (category) queryParams.set('category', category);
   if (status) queryParams.set('status', status);
@@ -54,16 +54,16 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
   return (
     <div className="min-h-screen bg-neo-cream">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* 헤더 */}
+        {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 flex items-center justify-center bg-neo-blue border-3 border-neo-black shadow-neo">
               <MessageCircle className="w-8 h-8 text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-3xl font-black uppercase text-neo-black">문의 게시판</h1>
+              <h1 className="text-3xl font-black uppercase text-neo-black">Inquiry Board</h1>
               <p className="text-neo-black/70 mt-1">
-                상품이나 서비스에 대해 궁금한 점을 문의해주세요
+                Please inquire about any questions regarding products or services
               </p>
             </div>
           </div>
@@ -72,11 +72,11 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
             className="inline-flex items-center gap-2 px-6 py-3 bg-neo-pink text-white border-3 border-neo-black shadow-neo font-bold uppercase tracking-wide hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-neo-sm transition-all"
           >
             <Plus className="w-5 h-5" strokeWidth={2.5} />
-            문의 작성
+            Write Inquiry
           </Link>
         </div>
 
-        {/* 상태 탭 */}
+        {/* Status Tabs */}
         <div className="flex gap-2 mb-6">
           <Link
             href="/inquiries"
@@ -86,7 +86,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
                 : 'bg-neo-white text-neo-black shadow-neo-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none'
             }`}
           >
-            전체
+            All
           </Link>
           <Link
             href="/inquiries?status=pending"
@@ -97,7 +97,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
             }`}
           >
             <Clock className="w-4 h-4" strokeWidth={2.5} />
-            답변 대기
+            Pending
           </Link>
           <Link
             href="/inquiries?status=answered"
@@ -108,14 +108,14 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
             }`}
           >
             <CheckCircle className="w-4 h-4" strokeWidth={2.5} />
-            답변 완료
+            Answered
           </Link>
         </div>
 
-        {/* 카테고리 & 검색 */}
+        {/* Category & Search */}
         <div className="bg-neo-white border-3 border-neo-black shadow-neo p-4 mb-6">
           <div className="flex flex-wrap gap-4 items-center">
-            {/* 카테고리 필터 */}
+            {/* Category Filter */}
             <div className="flex gap-2 flex-wrap">
               <Link
                 href={`/inquiries${status ? `?status=${status}` : ''}`}
@@ -125,7 +125,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
                     : 'bg-transparent text-neo-black hover:bg-neo-black/10'
                 }`}
               >
-                전체
+                All
               </Link>
               {Object.entries(INQUIRY_CATEGORIES).map(([key, label]) => (
                 <Link
@@ -142,14 +142,14 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
               ))}
             </div>
 
-            {/* 검색 */}
+            {/* Search */}
             <form className="flex-1 min-w-[200px]" method="GET" action="/inquiries">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neo-black/50" strokeWidth={2.5} />
                 <input
                   type="search"
                   name="search"
-                  placeholder="제목 또는 내용 검색..."
+                  placeholder="Search title or content..."
                   className="w-full pl-10 pr-4 py-2 border-3 border-neo-black font-medium focus:outline-none focus:ring-2 focus:ring-neo-blue"
                   defaultValue={search}
                 />
@@ -161,7 +161,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
           </div>
         </div>
 
-        {/* 문의 목록 */}
+        {/* Inquiry List */}
         <Suspense
           fallback={
             <div className="space-y-4">
@@ -175,14 +175,14 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
             <div className="bg-neo-white border-3 border-neo-black shadow-neo p-12 text-center">
               <MessageCircle className="w-16 h-16 mx-auto mb-4 text-neo-black/30" strokeWidth={2} />
               <p className="text-neo-black/70 mb-6 text-lg">
-                등록된 문의가 없습니다.
+                No inquiries registered.
               </p>
               <Link
                 href="/inquiries/new"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-neo-blue text-white border-3 border-neo-black shadow-neo font-bold uppercase hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-neo-sm transition-all"
               >
                 <Plus className="w-5 h-5" strokeWidth={2.5} />
-                첫 문의 작성하기
+                Write First Inquiry
               </Link>
             </div>
           ) : (
@@ -194,7 +194,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
           )}
         </Suspense>
 
-        {/* 페이지네이션 */}
+        {/* Pagination */}
         {pagination.totalPages > 1 && (
           <div className="flex justify-center items-center gap-4 mt-8">
             {page > 1 && (
@@ -202,7 +202,7 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
                 href={`/inquiries?page=${page - 1}${category ? `&category=${category}` : ''}${status ? `&status=${status}` : ''}${sortBy ? `&sort_by=${sortBy}` : ''}`}
                 className="px-4 py-2 bg-neo-white border-3 border-neo-black shadow-neo-sm font-bold hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
               >
-                이전
+                Previous
               </Link>
             )}
             <span className="px-4 py-2 bg-neo-black text-white border-3 border-neo-black font-bold">
@@ -213,15 +213,15 @@ export default async function InquiriesPage({ searchParams }: InquiriesPageProps
                 href={`/inquiries?page=${page + 1}${category ? `&category=${category}` : ''}${status ? `&status=${status}` : ''}${sortBy ? `&sort_by=${sortBy}` : ''}`}
                 className="px-4 py-2 bg-neo-white border-3 border-neo-black shadow-neo-sm font-bold hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
               >
-                다음
+                Next
               </Link>
             )}
           </div>
         )}
 
-        {/* 총 개수 */}
+        {/* Total Count */}
         <div className="text-center mt-4 font-bold text-neo-black/70">
-          총 {pagination.total}개의 문의
+          Total {pagination.total} inquiries
         </div>
       </div>
     </div>

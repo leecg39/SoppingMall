@@ -4,17 +4,17 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 /**
- * NavMenu 컴포넌트
- * - 데스크톱 네비게이션 메뉴
- * - 현재 페이지 하이라이트
+ * NavMenu Component
+ * - Desktop navigation menu
+ * - Current page highlight
  */
 
 const menuItems = [
-  { href: '/products', label: '상품' },
-  { href: '/categories', label: '카테고리' },
-  { href: '/reviews', label: '후기' },
-  { href: '/inquiries', label: '문의' },
-  { href: '/about', label: '소개' },
+  { href: '/products', label: 'Products' },
+  { href: '/categories', label: 'Categories' },
+  { href: '/reviews', label: 'Reviews' },
+  { href: '/inquiries', label: 'Contact' },
+  { href: '/about', label: 'About' },
 ];
 
 export function NavMenu() {
@@ -39,7 +39,7 @@ export function NavMenu() {
               `}
             >
               {item.label}
-              {/* 활성 상태 언더라인 */}
+              {/* Active state underline */}
               {isActive && (
                 <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-neo-blue" />
               )}

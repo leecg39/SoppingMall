@@ -1,6 +1,6 @@
 /**
- * Reviews Page - Neo-Brutalism 디자인
- * 상품 후기 목록 페이지
+ * Reviews Page - Neo-Brutalism Design
+ * Product Reviews List Page
  */
 
 import { Suspense } from 'react';
@@ -23,7 +23,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
   const page = parseInt(params.page || '1');
   const search = params.search;
 
-  // API 호출
+  // API Call
   const queryParams = new URLSearchParams();
   if (sortBy) queryParams.set('sort_by', sortBy);
   if (rating) queryParams.set('rating', rating);
@@ -52,23 +52,23 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
   return (
     <div className="min-h-screen bg-neo-cream">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* 헤더 */}
+        {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className="w-16 h-16 flex items-center justify-center bg-neo-yellow border-3 border-neo-black shadow-neo">
             <Star className="w-8 h-8 text-neo-black" strokeWidth={2.5} />
           </div>
           <div>
-            <h1 className="text-3xl font-black uppercase text-neo-black">상품 후기</h1>
+            <h1 className="text-3xl font-black uppercase text-neo-black">Product Reviews</h1>
             <p className="text-neo-black/70 mt-1">
-              실제 구매 고객들의 생생한 후기를 확인하세요
+              See authentic reviews from actual customers
             </p>
           </div>
         </div>
 
-        {/* 필터 */}
+        {/* Filters */}
         <div className="bg-neo-white border-3 border-neo-black shadow-neo p-4 mb-6">
           <div className="flex flex-wrap gap-4 items-center">
-            {/* 별점 필터 */}
+            {/* Rating Filter */}
             <div className="flex gap-2">
               <Link
                 href="/reviews"
@@ -76,7 +76,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                   !rating ? 'bg-neo-yellow text-neo-black' : 'bg-transparent text-neo-black hover:bg-neo-black/10'
                 }`}
               >
-                전체
+                All
               </Link>
               {[5, 4, 3, 2, 1].map((r) => (
                 <Link
@@ -91,12 +91,12 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
               ))}
             </div>
 
-            {/* 정렬 */}
+            {/* Sort */}
             <div className="flex gap-2">
               {[
-                { key: 'latest', label: '최신순' },
-                { key: 'likes', label: '좋아요순' },
-                { key: 'rating_high', label: '별점 높은순' },
+                { key: 'latest', label: 'Latest' },
+                { key: 'likes', label: 'Most Liked' },
+                { key: 'rating_high', label: 'Highest Rated' },
               ].map(({ key, label }) => (
                 <Link
                   key={key}
@@ -110,14 +110,14 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
               ))}
             </div>
 
-            {/* 검색 */}
+            {/* Search */}
             <form className="flex-1 min-w-[200px]" method="GET" action="/reviews">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neo-black/50" strokeWidth={2.5} />
                 <input
                   type="search"
                   name="search"
-                  placeholder="후기 검색..."
+                  placeholder="Search reviews..."
                   className="w-full pl-10 pr-4 py-2 border-3 border-neo-black font-medium focus:outline-none focus:ring-2 focus:ring-neo-blue"
                   defaultValue={search}
                 />
@@ -128,7 +128,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
           </div>
         </div>
 
-        {/* 후기 목록 */}
+        {/* Reviews List */}
         <Suspense
           fallback={
             <div className="space-y-4">
@@ -142,10 +142,10 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
             <div className="bg-neo-white border-3 border-neo-black shadow-neo p-12 text-center">
               <Star className="w-16 h-16 mx-auto mb-4 text-neo-black/30" strokeWidth={2} />
               <p className="text-neo-black/70 mb-6 text-lg">
-                등록된 후기가 없습니다.
+                No reviews registered.
               </p>
               <p className="text-neo-black/50">
-                상품을 구매하시면 후기를 작성할 수 있습니다.
+                You can write reviews after purchasing products.
               </p>
             </div>
           ) : (
@@ -155,11 +155,11 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                   key={review.id}
                   className="bg-neo-white border-3 border-neo-black shadow-neo p-6 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-neo-lg transition-all"
                 >
-                  {/* 헤더 */}
+                  {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        {/* 별점 */}
+                        {/* Rating */}
                         <div className="flex items-center gap-0.5">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <Star
@@ -184,7 +184,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                     )}
                   </div>
 
-                  {/* 상품 정보 */}
+                  {/* Product Info */}
                   {review.product && (
                     <Link
                       href={`/products/${review.product.slug}`}
@@ -194,10 +194,10 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                     </Link>
                   )}
 
-                  {/* 내용 */}
+                  {/* Content */}
                   <p className="text-neo-black/80 mb-4 leading-relaxed">{review.content}</p>
 
-                  {/* 이미지 */}
+                  {/* Images */}
                   {review.images && review.images.length > 0 && (
                     <div className="flex gap-2 mb-4">
                       {review.images.slice(0, 5).map((img: string, idx: number) => (
@@ -209,10 +209,10 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                     </div>
                   )}
 
-                  {/* 푸터 */}
+                  {/* Footer */}
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center gap-4 text-neo-black/60">
-                      <span className="font-bold">{review.author?.nickname || '익명'}</span>
+                      <span className="font-bold">{review.author?.nickname || 'Anonymous'}</span>
                       <span>{new Date(review.created_at).toLocaleDateString('ko-KR')}</span>
                     </div>
                     <div className="flex items-center gap-4">
@@ -232,7 +232,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
           )}
         </Suspense>
 
-        {/* 페이지네이션 */}
+        {/* Pagination */}
         {pagination.totalPages > 1 && (
           <div className="flex justify-center items-center gap-4 mt-8">
             {page > 1 && (
@@ -240,7 +240,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                 href={`/reviews?page=${page - 1}${rating ? `&rating=${rating}` : ''}${sortBy ? `&sort_by=${sortBy}` : ''}`}
                 className="px-4 py-2 bg-neo-white border-3 border-neo-black shadow-neo-sm font-bold hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
               >
-                이전
+                Previous
               </Link>
             )}
             <span className="px-4 py-2 bg-neo-black text-white border-3 border-neo-black font-bold">
@@ -251,15 +251,15 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
                 href={`/reviews?page=${page + 1}${rating ? `&rating=${rating}` : ''}${sortBy ? `&sort_by=${sortBy}` : ''}`}
                 className="px-4 py-2 bg-neo-white border-3 border-neo-black shadow-neo-sm font-bold hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
               >
-                다음
+                Next
               </Link>
             )}
           </div>
         )}
 
-        {/* 총 개수 */}
+        {/* Total Count */}
         <div className="text-center mt-4 font-bold text-neo-black/70">
-          총 {pagination.total}개의 후기
+          Total {pagination.total} reviews
         </div>
       </div>
     </div>

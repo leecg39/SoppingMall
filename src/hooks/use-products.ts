@@ -2,7 +2,7 @@
 
 /**
  * useProducts Hook
- * 상품 목록 및 상세 데이터 페칭 (SWR 기반)
+ * Fetch product list and detail data (SWR-based)
  */
 
 import useSWR from 'swr';
@@ -16,7 +16,7 @@ import type {
   Pagination,
 } from '@/types/products';
 
-// Fetcher 함수
+// Fetcher function
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   if (!res.ok) {
@@ -25,7 +25,7 @@ const fetcher = async (url: string) => {
   return res.json();
 };
 
-// URL 생성 헬퍼
+// URL builder helper
 function buildProductsUrl(params?: ProductsParams): string {
   const searchParams = new URLSearchParams();
 
@@ -41,7 +41,7 @@ function buildProductsUrl(params?: ProductsParams): string {
 }
 
 /**
- * 상품 목록 조회 훅
+ * Product list fetch hook
  */
 export function useProducts(params?: ProductsParams) {
   const url = buildProductsUrl(params);
@@ -73,7 +73,7 @@ export function useProducts(params?: ProductsParams) {
 }
 
 /**
- * 상품 상세 조회 훅
+ * Product detail fetch hook
  */
 export function useProduct(slug: string) {
   const shouldFetch = Boolean(slug);

@@ -3,33 +3,33 @@ import { Github, Youtube, Twitter, Mail } from 'lucide-react';
 
 /**
  * Footer 컴포넌트
- * - 회사 정보, 링크, 소셜 아이콘
+ * - Company 정보, 링크, 소셜 아이콘
  * - Neo-Brutalism 스타일
  */
 
 const footerLinks = {
   product: [
-    { href: '/products', label: '상품 둘러보기' },
-    { href: '/categories', label: '카테고리' },
-    { href: '/new', label: '신규 상품' },
-    { href: '/best', label: '베스트 셀러' },
+    { href: '/products', label: 'Browse Products' },
+    { href: '/categories', label: 'Categories' },
+    { href: '/new', label: 'New Arrivals' },
+    { href: '/best', label: 'Best Sellers' },
   ],
   support: [
     { href: '/faq', label: 'FAQ' },
-    { href: '/contact', label: '문의하기' },
-    { href: '/downloads', label: '다운로드 센터' },
-    { href: '/refund', label: '환불 정책' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/downloads', label: 'Downloads' },
+    { href: '/refund', label: 'Refund Policy' },
   ],
   company: [
-    { href: '/about', label: '회사 소개' },
-    { href: '/blog', label: '블로그' },
-    { href: '/careers', label: '채용' },
-    { href: '/press', label: '보도자료' },
+    { href: '/about', label: 'About Us' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/careers', label: 'Careers' },
+    { href: '/press', label: 'Press' },
   ],
   legal: [
-    { href: '/terms', label: '이용약관' },
-    { href: '/privacy', label: '개인정보처리방침' },
-    { href: '/license', label: '라이선스' },
+    { href: '/terms', label: 'Terms of Service' },
+    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/license', label: 'License' },
   ],
 };
 
@@ -52,10 +52,10 @@ export function Footer() {
               href="/"
               className="inline-block text-2xl sm:text-3xl font-black uppercase tracking-tight text-neo-black hover:text-neo-blue transition-colors"
             >
-              VIBE STORE
+              VERSPA STORE
             </Link>
             <p className="mt-4 text-sm text-neo-black/70 leading-relaxed">
-              라이브 코딩으로 만드는 디지털 상품 쇼핑몰 스캘레톤
+              Premium hair care products shopping mall
             </p>
 
             {/* 소셜 링크 */}
@@ -78,10 +78,10 @@ export function Footer() {
             </div>
           </div>
 
-          {/* 상품 */}
+          {/* Products */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wide text-neo-black">
-              상품
+              Products
             </h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.product.map((link) => (
@@ -97,10 +97,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* 고객지원 */}
+          {/* Support */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wide text-neo-black">
-              고객지원
+              Support
             </h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.support.map((link) => (
@@ -116,10 +116,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* 회사 */}
+          {/* Company */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wide text-neo-black">
-              회사
+              Company
             </h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.company.map((link) => (
@@ -138,7 +138,7 @@ export function Footer() {
           {/* 법적 정보 */}
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wide text-neo-black">
-              약관 및 정책
+              Legal
             </h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.legal.map((link) => (

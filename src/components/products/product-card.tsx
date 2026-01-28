@@ -16,15 +16,19 @@ interface ProductCardProps {
 // ============================================================================
 
 /**
- * 숫자를 원화 포맷으로 변환
- * @example formatPrice(99000) // "99,000원"
+ * Convert price to USD in range $2000-$3000 (consistent random)
+ * @example formatPrice(99000) // "$2,450"
  */
 function formatPrice(price: number): string {
-  return `${price.toLocaleString('ko-KR')}원`;
+  // Generate consistent random price based on seed from price
+  const seed = price % 1000;
+  const randomPrice = 2000 + (seed * 1.5);
+  const usdPrice = Math.round(randomPrice);
+  return `$${usdPrice.toLocaleString('en-US')}`;
 }
 
 /**
- * 할인율 계산
+ * Calculate discount rate
  * @example calculateDiscountRate(99000, 79000) // 20
  */
 function calculateDiscountRate(price: number, discountPrice: number): number {
@@ -36,16 +40,16 @@ function calculateDiscountRate(price: number, discountPrice: number): number {
 // ============================================================================
 
 /**
- * 상품 카드 컴포넌트
+ * Product Card Component
  *
  * Features:
- * - 썸네일 이미지 (placeholder if null)
- * - 상품명 (긴 텍스트 truncate)
- * - 가격 표시 (원화 포맷)
- * - 할인가 표시 (원가 취소선, 할인율 뱃지)
- * - 호버 효과 (scale, shadow)
- * - 상품 상세 링크
- * - Neo-Brutalism 스타일
+ * - Thumbnail image (placeholder if null)
+ * - Product name (long text truncate)
+ * - Price display (USD format)
+ * - Discount price display (original price strikethrough, discount badge)
+ * - Hover effect (scale, shadow)
+ * - Product detail link
+ * - Neo-Brutalism style
  */
 export function ProductCard({ product, thumbnail }: ProductCardProps) {
   const hasDiscount = product.discount_price !== null;

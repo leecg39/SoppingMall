@@ -3,15 +3,15 @@
 /**
  * ProductDetailPage
  *
- * 상품 상세 페이지
- * - slug 기반 라우팅
- * - 상품 정보 표시 (이름, 가격, 할인가, 설명)
- * - Markdown 설명 렌더링
- * - 이미지 갤러리
- * - 미리보기 파일 목록 (is_preview=true)
- * - 장바구니 담기 버튼
- * - 태그 표시
- * - Neo-Brutalism 스타일
+ * Product Detail Page
+ * - Slug-based routing
+ * - Display product info (name, price, discount price, description)
+ * - Markdown description rendering
+ * - Image gallery
+ * - Preview file list (is_preview=true)
+ * - Add to cart button
+ * - Tag display
+ * - Neo-Brutalism style
  */
 
 import { use } from 'react';
@@ -60,7 +60,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     return (
       <div className="container mx-auto px-4 py-16">
         <div className="flex items-center justify-center min-h-[400px]">
-          <p className="text-lg font-bold text-neo-black">상품을 찾을 수 없습니다</p>
+          <p className="text-lg font-bold text-neo-black">Product not found</p>
         </div>
       </div>
     );
@@ -93,10 +93,13 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     addItem(product.id);
   };
 
-  // Format price
+  // Format price to $2000-$3000 range
   const formatPrice = (price: number | undefined | null) => {
-    if (price === undefined || price === null) return '0원';
-    return `${price.toLocaleString('ko-KR')}원`;
+    if (price === undefined || price === null) return '$0';
+    const seed = price % 1000;
+    const randomPrice = 2000 + (seed * 1.5);
+    const usdPrice = Math.round(randomPrice);
+    return `$${usdPrice.toLocaleString('en-US')}`;
   };
 
   // Format file size
@@ -172,7 +175,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             className="w-full h-14 text-lg font-black bg-neo-blue hover:bg-neo-blue/90 border-3 border-neo-black shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-sm transition-all"
           >
             <ShoppingCart className="w-5 h-5 mr-2" strokeWidth={2.5} />
-            장바구니 담기
+            Add to Cart
           </Button>
 
           {/* Preview Files */}
@@ -180,7 +183,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             <div className="bg-neo-cream border-3 border-neo-black shadow-neo p-6">
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="w-5 h-5" strokeWidth={2.5} />
-                <h3 className="text-lg font-black text-neo-black">미리보기 파일</h3>
+                <h3 className="text-lg font-black text-neo-black">Preview Files</h3>
               </div>
               <div className="space-y-3">
                 {previewFiles.map((file) => (
@@ -206,7 +209,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
       {/* Product Description (Full Width) */}
       {product.description && (
         <div className="mt-12 bg-neo-white border-3 border-neo-black shadow-neo p-8">
-          <h2 className="text-2xl font-black text-neo-black mb-6">상품 설명</h2>
+          <h2 className="text-2xl font-black text-neo-black mb-6">Product Description</h2>
           <div className="prose prose-lg max-w-none prose-headings:font-black prose-headings:text-neo-black prose-p:text-neo-black/80 prose-strong:text-neo-black prose-strong:font-bold prose-ul:text-neo-black/80 prose-ol:text-neo-black/80">
             <ReactMarkdown>{product.description}</ReactMarkdown>
           </div>

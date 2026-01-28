@@ -1,6 +1,6 @@
 /**
  * Product Types
- * 상품 관련 타입 정의
+ * Product-related type definitions
  */
 
 export interface Product {

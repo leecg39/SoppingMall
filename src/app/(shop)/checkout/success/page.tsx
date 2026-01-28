@@ -1,11 +1,11 @@
 /**
  * Checkout Success Page (P3-T3.4)
  *
- * 결제 완료 페이지
- * - URL 파라미터에서 orderId, paymentKey, amount 추출
- * - 주문 확인 및 결제 성공 메시지
- * - 다운로드 센터 링크
- * - 비회원일 경우 회원 가입 유도
+ * Payment completion page
+ * - Extract orderId, paymentKey, amount from URL parameters
+ * - Order confirmation and payment success message
+ * - Link to download center
+ * - Prompt non-members to sign up
  */
 
 import { Suspense } from 'react';
@@ -31,7 +31,7 @@ export default async function CheckoutSuccessPage({
         <div className="min-h-screen bg-neo-cream flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-neo-black border-t-transparent"></div>
-            <p className="mt-4 text-neo-black font-bold">결제 확인 중...</p>
+            <p className="mt-4 text-neo-black font-bold">Verifying payment...</p>
           </div>
         </div>
       }
