@@ -15,7 +15,7 @@ interface Product {
   slug: string;
   price: number;
   discount_price: number | null;
-  product_images: { url: string; alt: string }[];
+  product_images: { url: string; alt: string | null }[];
 }
 
 async function getFeaturedProducts() {
@@ -52,7 +52,7 @@ export default async function Home() {
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
           style={{
-            backgroundImage: 'linear-gradient(rgba(24, 21, 17, 0.15), rgba(24, 21, 17, 0.45)), url(/products/verspa-basic/20220331 컴헤어(연출)-0577.jpg)'
+            backgroundImage: 'linear-gradient(rgba(30, 35, 40, 0.65), rgba(20, 25, 30, 0.85)), url(/products/verspa-basic/20220331 컴헤어(연출)-0577.jpg)'
           }}
         ></div>
 
@@ -115,7 +115,7 @@ export default async function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProducts.map((product: Product, index: number) => {
-                const badges = ['NO.1 IN SALES', 'NEW TECHNOLOGY', 'ACCESSORIES'];
+                const badges = ['판매 1위', '신기술', '액세서리'];
                 return (
                   <div
                     key={product.id}
