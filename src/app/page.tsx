@@ -213,10 +213,10 @@ export default async function Home() {
             {/* Title */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-                모든 디테일의 혁신
+                Innovation in Every Detail
               </h2>
               <p className="text-white/40">
-                최첨단 기술과 프리미엄 장인정신의 만남
+                Cutting-edge technology meets premium craftsmanship
               </p>
             </div>
 
@@ -227,7 +227,7 @@ export default async function Home() {
                 <div className="aspect-square bg-surface-dark rounded-xl mb-4 overflow-hidden relative">
                   <Image
                     src="/products/brand-info/verspa_5.jpg"
-                    alt="VERSPA 프리미엄 디자인"
+                    alt="Premium Materials Technology"
                     fill
                     className="object-contain"
                   />
@@ -238,10 +238,10 @@ export default async function Home() {
                   </div>
                   <div>
                     <h3 className="text-lg font-black text-white mb-2">
-                      프리미엄 소재
+                      Premium Materials
                     </h3>
                     <p className="text-sm text-white/60 leading-relaxed">
-                      고급 스테인리스 스틸과 프리미엄 가죽 시트로 제작되어 오래도록 럭셔리함을 유지하고 관리가 용이합니다.
+                      High-grade stainless steel and premium leather upholstery designed for lasting luxury and easy maintenance.
                     </p>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ export default async function Home() {
                 <div className="aspect-square bg-surface-dark rounded-xl mb-4 overflow-hidden relative">
                   <Image
                     src="/products/brand-info/verspa_6.jpg"
-                    alt="컬러 커스터마이징"
+                    alt="Custom Color Technology"
                     fill
                     className="object-contain"
                   />
@@ -263,10 +263,10 @@ export default async function Home() {
                   </div>
                   <div>
                     <h3 className="text-lg font-black text-white mb-2">
-                      맞춤 컬러
+                      Custom Colors
                     </h3>
                     <p className="text-sm text-white/60 leading-relaxed">
-                      데저트 브라운, 아이보리 등 다양한 컬러 옵션 중에서 선택하여 귀하의 살롱 분위기에 완벽하게 매치하실 수 있습니다.
+                      Choose from desert brown, ivory, and custom color options to match your salon's aesthetic perfectly.
                     </p>
                   </div>
                 </div>
@@ -277,7 +277,7 @@ export default async function Home() {
                 <div className="aspect-square bg-surface-dark rounded-xl mb-4 overflow-hidden relative">
                   <Image
                     src="/products/brand-info/verspa_brand_3.jpg"
-                    alt="전문 설치 서비스"
+                    alt="Expert Installation Technology"
                     fill
                     className="object-cover"
                   />
@@ -288,10 +288,10 @@ export default async function Home() {
                   </div>
                   <div>
                     <h3 className="text-lg font-black text-white mb-2">
-                      전문가 설치
+                      Expert Installation
                     </h3>
                     <p className="text-sm text-white/60 leading-relaxed">
-                      전문 설치 서비스가 포함되어 있습니다. 숙련된 기술자가 완벽한 설치와 모든 기능의 정상 작동을 보장합니다.
+                      Professional installation service included. Our technicians ensure perfect setup and full functionality.
                     </p>
                   </div>
                 </div>
@@ -303,7 +303,7 @@ export default async function Home() {
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/20 rounded-full">
                 <ShieldCheck className="w-5 h-5 text-primary" />
                 <span className="text-sm font-bold text-white">
-                  모든 구성품에 종합 보증이 적용됩니다
+                  All components backed by our comprehensive warranty
                 </span>
               </div>
             </div>
