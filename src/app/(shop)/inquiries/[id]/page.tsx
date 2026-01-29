@@ -18,7 +18,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
-import { en } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale/en-US';
 import { ArrowLeft, Lock, Eye, MessageCircle, Clock, User } from 'lucide-react';
 import {
   INQUIRY_CATEGORIES,
@@ -76,14 +76,14 @@ export default async function InquiryDetailPage({ params }: InquiryDetailPagePro
   // Relative time format
   const createdAt = formatDistanceToNow(new Date(inquiry.created_at), {
     addSuffix: true,
-    locale: en,
+    locale: enUS,
   });
 
   const answeredAt = inquiry.answered_at
     ? formatDistanceToNow(new Date(inquiry.answered_at), {
-        addSuffix: true,
-        locale: en,
-      })
+      addSuffix: true,
+      locale: enUS,
+    })
     : null;
 
   return (
