@@ -9,19 +9,24 @@ import Image from 'next/image';
  * - Featured products from database
  */
 
+interface ProductImage {
+  url: string;
+  alt: string | null;
+}
+
 interface Product {
   id: string;
   name: string;
   slug: string;
   price: number;
   discount_price: number | null;
-  product_images: { url: string; alt: string | null }[];
+  product_images: ProductImage[];
 }
 
-async function getFeaturedProducts() {
+async function getFeaturedProducts(): Promise<Product[]> {
   const supabase = await createServerClient();
 
-  const { data: products } = await supabase
+  const { data } = await supabase
     .from('products')
     .select(`
       id,
@@ -38,7 +43,8 @@ async function getFeaturedProducts() {
     .eq('status', 'active')
     .limit(3);
 
-  return products || [];
+  // Type assertion to handle Supabase's nested query typing limitation
+  return (data as unknown as Product[]) || [];
 }
 
 export default async function Home() {
@@ -48,11 +54,11 @@ export default async function Home() {
     <div className="flex flex-col w-full">
       {/* Hero Section */}
       <header className="relative w-full min-h-[600px] lg:h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background with Overlay */}
+        {/* Background with Premium Gray Overlay */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
           style={{
-            backgroundImage: 'linear-gradient(rgba(30, 35, 40, 0.65), rgba(20, 25, 30, 0.85)), url(/products/verspa-basic/20220331 컴헤어(연출)-0577.jpg)'
+            backgroundImage: 'linear-gradient(rgba(15, 18, 22, 0.82), rgba(10, 12, 16, 0.92)), url(/products/verspa-basic/20220331 컴헤어(연출)-0577.jpg)'
           }}
         ></div>
 
@@ -114,8 +120,8 @@ export default async function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredProducts.map((product: Product, index: number) => {
-                const badges = ['판매 1위', '신기술', '액세서리'];
+              {featuredProducts.map((product, index) => {
+                const badges = ['NO.1 IN SALES', 'NEW TECHNOLOGY', 'ACCESSORIES'];
                 return (
                   <div
                     key={product.id}

@@ -46,7 +46,7 @@ function ProductsContent() {
   const [params, setParams] = useState<ProductsParams>({
     page: 1,
     pageSize: 12,
-    sort: 'popular',
+    sort: 'newest',
     category: categoryFromUrl || undefined,
   });
 
@@ -66,21 +66,59 @@ function ProductsContent() {
 
   const { products, pagination, isLoading, error } = useProducts(params);
 
-  // Client-side sort by effective price (discount_price ?? price)
+  // Client-side sort by category and price
   const sortedProducts = useMemo(() => {
     if (!products || products.length === 0) return products;
 
-    // Only apply client-side sorting for price options
-    if (params.sort === 'price_asc') {
-      return [...products].sort((a, b) => getEffectivePrice(a) - getEffectivePrice(b));
-    }
-    if (params.sort === 'price_desc') {
-      return [...products].sort((a, b) => getEffectivePrice(b) - getEffectivePrice(a));
-    }
+    let result = [...products];
 
-    // For other sort options, use API-sorted order
-    return products;
-  }, [products, params.sort]);
+    // Only apply price sorting for price_asc and price_desc
+    // For newest and popular, use API-sorted order
+    if (params.sort === 'price_asc') {
+      // Find VERSPA Basic category for prioritization
+      const basicCategory = categories.find(
+        (cat) => cat.slug === 'verspa-basic' || cat.name.toLowerCase().includes('basic')
+      );
+
+      result = result.sort((a, b) => {
+        // When viewing All category, prioritize VERSPA Basic products first
+        if (selectedCategory === null && basicCategory) {
+          const aIsBasic = a.category_id === basicCategory.id;
+          const bIsBasic = b.category_id === basicCategory.id;
+
+          // If one is Basic and the other is not, prioritize Basic
+          if (aIsBasic && !bIsBasic) return -1;
+          if (!aIsBasic && bIsBasic) return 1;
+        }
+
+        // Price sorting within category groups
+        return getEffectivePrice(a) - getEffectivePrice(b);
+      });
+    } else if (params.sort === 'price_desc') {
+      // Find VERSPA Basic category for prioritization
+      const basicCategory = categories.find(
+        (cat) => cat.slug === 'verspa-basic' || cat.name.toLowerCase().includes('basic')
+      );
+
+      result = result.sort((a, b) => {
+        // When viewing All category, prioritize VERSPA Basic products first
+        if (selectedCategory === null && basicCategory) {
+          const aIsBasic = a.category_id === basicCategory.id;
+          const bIsBasic = b.category_id === basicCategory.id;
+
+          // If one is Basic and the other is not, prioritize Basic
+          if (aIsBasic && !bIsBasic) return -1;
+          if (!aIsBasic && bIsBasic) return 1;
+        }
+
+        // Price sorting within category groups
+        return getEffectivePrice(b) - getEffectivePrice(a);
+      });
+    }
+    // For 'newest' and 'popular', use API-sorted order without Basic prioritization
+
+    return result;
+  }, [products, params.sort, selectedCategory, categories]);
 
   // Fetch categories
   useEffect(() => {
@@ -89,7 +127,18 @@ function ProductsContent() {
         const response = await fetch('/api/categories');
         if (!response.ok) throw new Error('Failed to fetch categories');
         const data = await response.json();
-        setCategories(data.categories || []);
+
+        // Sort categories: Accessory categories to the bottom
+        const sortedCategories = (data.categories || []).sort((a: CategoryFull, b: CategoryFull) => {
+          const aIsAccessory = a.name.toLowerCase().includes('accessory');
+          const bIsAccessory = b.name.toLowerCase().includes('accessory');
+
+          if (aIsAccessory && !bIsAccessory) return 1; // a goes after b
+          if (!aIsAccessory && bIsAccessory) return -1; // a goes before b
+          return 0; // maintain original order
+        });
+
+        setCategories(sortedCategories);
       } catch (err) {
         console.error('Failed to fetch categories:', err);
       } finally {
@@ -214,12 +263,12 @@ function ProductsContent() {
               id="sort-select"
               role="combobox"
               aria-label="Sort"
-              value={params.sort || 'popular'}
+              value={params.sort || 'newest'}
               onChange={(e) => handleSortChange(e.target.value as SortOption)}
               className="rounded-lg border-2 border-black bg-white px-4 py-2 font-bold shadow-neo transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-neo-sm"
             >
-              <option value="popular">Popular</option>
               <option value="newest">Newest</option>
+              <option value="popular">Popular</option>
               <option value="price_asc">Price: Low to High</option>
               <option value="price_desc">Price: High to Low</option>
             </select>

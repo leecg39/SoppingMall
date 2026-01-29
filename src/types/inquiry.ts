@@ -5,32 +5,32 @@ import { z } from 'zod';
 // ============================================================
 
 /**
- * Inquiry (상품 문의)
- * - 로그인 사용자만 작성 가능
- * - 비밀글 옵션 지원
- * - 관리자 답변 기능
- * - 카테고리별 분류 (상품/배송/환불/기타)
+ * Inquiry (Product Inquiry)
+ * - Only logged-in users can write
+ * - Private post option supported
+ * - Admin answer functionality
+ * - Categorized by (Product/Shipping/Refund/Other)
  */
 
-// Inquiry 카테고리
+// Inquiry categories
 export const INQUIRY_CATEGORIES = {
-  product: '상품 정보',
-  shipping: '배송 문의',
-  refund: '환불/교환',
-  etc: '기타',
+  product: 'Product Info',
+  shipping: 'Shipping Inquiry',
+  refund: 'Refund/Exchange',
+  etc: 'Other',
 } as const;
 
 export type InquiryCategoryType = keyof typeof INQUIRY_CATEGORIES;
 
-// Inquiry 상태
+// Inquiry status
 export const INQUIRY_STATUS = {
-  pending: '답변 대기',
-  answered: '답변 완료',
+  pending: 'Pending',
+  answered: 'Answered',
 } as const;
 
 export type InquiryStatusType = keyof typeof INQUIRY_STATUS;
 
-// Inquiry 기본 스키마
+// Inquiry basic schema
 export const InquirySchema = z.object({
   id: z.string().uuid(),
   product_id: z.string().uuid(),
@@ -50,7 +50,7 @@ export const InquirySchema = z.object({
 
 export type Inquiry = z.infer<typeof InquirySchema>;
 
-// Inquiry with Author (작성자 정보 포함)
+// Inquiry with Author (includes author information)
 export const InquiryWithAuthorSchema = InquirySchema.extend({
   author: z.object({
     id: z.string().uuid(),
@@ -62,7 +62,7 @@ export const InquiryWithAuthorSchema = InquirySchema.extend({
 
 export type InquiryWithAuthor = z.infer<typeof InquiryWithAuthorSchema>;
 
-// Inquiry with Product (상품 정보 포함)
+// Inquiry with Product (includes product information)
 export const InquiryWithProductSchema = InquirySchema.extend({
   product: z.object({
     id: z.string().uuid(),
@@ -74,7 +74,7 @@ export const InquiryWithProductSchema = InquirySchema.extend({
 
 export type InquiryWithProduct = z.infer<typeof InquiryWithProductSchema>;
 
-// Inquiry with Answer (답변자 정보 포함)
+// Inquiry with Answer (includes answerer information)
 export const InquiryWithAnswerSchema = InquirySchema.extend({
   answerer: z.object({
     id: z.string().uuid(),
@@ -86,18 +86,18 @@ export const InquiryWithAnswerSchema = InquirySchema.extend({
 
 export type InquiryWithAnswer = z.infer<typeof InquiryWithAnswerSchema>;
 
-// Inquiry 생성 입력 스키마
+// Inquiry creation input schema
 export const CreateInquirySchema = z.object({
   product_id: z.string().uuid().optional(),
   category: z.enum(['product', 'shipping', 'refund', 'etc']),
-  title: z.string().min(1, '제목을 입력해주세요').max(200, '제목은 200자 이내로 입력해주세요'),
-  content: z.string().min(10, '내용을 10자 이상 입력해주세요'),
+  title: z.string().min(1, 'Please enter a title').max(200, 'Title must be 200 characters or less'),
+  content: z.string().min(10, 'Content must be at least 10 characters'),
   is_private: z.boolean(),
 });
 
 export type CreateInquiryInput = z.infer<typeof CreateInquirySchema>;
 
-// Inquiry 수정 입력 스키마 (답변 전에만 수정 가능)
+// Inquiry update input schema (only editable before answer)
 export const UpdateInquirySchema = z.object({
   category: z.enum(['product', 'shipping', 'refund', 'etc']).optional(),
   title: z.string().min(1).max(200).optional(),
@@ -107,14 +107,14 @@ export const UpdateInquirySchema = z.object({
 
 export type UpdateInquiryInput = z.infer<typeof UpdateInquirySchema>;
 
-// Inquiry 답변 입력 스키마 (관리자용)
+// Inquiry answer input schema (for admin)
 export const AnswerInquirySchema = z.object({
-  answer: z.string().min(1, '답변 내용을 입력해주세요'),
+  answer: z.string().min(1, 'Please enter answer content'),
 });
 
 export type AnswerInquiryInput = z.infer<typeof AnswerInquirySchema>;
 
-// Inquiry 필터 스키마
+// Inquiry filter schema
 export const InquiryFilterSchema = z.object({
   product_id: z.string().uuid().optional(),
   user_id: z.string().uuid().optional(),
@@ -129,15 +129,15 @@ export const InquiryFilterSchema = z.object({
 
 export type InquiryFilter = z.infer<typeof InquiryFilterSchema>;
 
-// Inquiry 정렬 옵션
+// Inquiry sort options
 export const INQUIRY_SORT_OPTIONS = {
-  latest: { label: '최신순', value: 'latest' },
-  oldest: { label: '오래된순', value: 'oldest' },
-  unanswered: { label: '답변 대기', value: 'unanswered' },
-  most_viewed: { label: '조회수순', value: 'most_viewed' },
+  latest: { label: 'Latest', value: 'latest' },
+  oldest: { label: 'Oldest', value: 'oldest' },
+  unanswered: { label: 'Unanswered', value: 'unanswered' },
+  most_viewed: { label: 'Most Viewed', value: 'most_viewed' },
 } as const;
 
-// Inquiry 통계 스키마
+// Inquiry statistics schema
 export const InquiryStatsSchema = z.object({
   total_count: z.number().int().nonnegative(),
   pending_count: z.number().int().nonnegative(),
@@ -154,7 +154,7 @@ export const InquiryStatsSchema = z.object({
 
 export type InquiryStats = z.infer<typeof InquiryStatsSchema>;
 
-// Inquiry 답변 템플릿 스키마 (관리자용)
+// Inquiry answer template schema (for admin)
 export const InquiryAnswerTemplateSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),

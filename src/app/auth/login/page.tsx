@@ -1,6 +1,6 @@
 /**
  * Login Page - NextAuth.js Credentials Provider
- * Neo-Brutalism 디자인
+ * Neo-Brutalism Design
  */
 
 'use client';
@@ -27,12 +27,12 @@ function LoginForm() {
     setError(null);
 
     if (!email) {
-      setError('이메일을 입력해주세요');
+      setError('Please enter your email');
       return;
     }
 
     if (!password) {
-      setError('비밀번호를 입력해주세요');
+      setError('Please enter your password');
       return;
     }
 
@@ -46,15 +46,15 @@ function LoginForm() {
       });
 
       if (result?.error) {
-        setError('이메일 또는 비밀번호가 올바르지 않습니다');
+        setError('Email or password is incorrect');
         return;
       }
 
-      // 로그인 성공 - 리다이렉트
+      // Login successful - redirect
       router.push(callbackUrl);
       router.refresh();
     } catch (err) {
-      setError('로그인 중 오류가 발생했습니다');
+      setError('An error occurred during login');
     } finally {
       setIsLoading(false);
     }
@@ -66,10 +66,10 @@ function LoginForm() {
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-black text-neo-black uppercase tracking-tight mb-2">
-            로그인
+            Login
           </h1>
           <p className="text-base text-neo-black/70">
-            Vibe Store에 오신 것을 환영합니다
+            Welcome to Vibe Store
           </p>
         </div>
 
@@ -90,7 +90,7 @@ function LoginForm() {
                 htmlFor="email"
                 className="block text-sm font-black uppercase text-neo-black"
               >
-                이메일
+                Email
               </label>
               <input
                 id="email"
@@ -110,13 +110,13 @@ function LoginForm() {
                 htmlFor="password"
                 className="block text-sm font-black uppercase text-neo-black"
               >
-                비밀번호
+                Password
               </label>
               <div className="relative">
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  placeholder="비밀번호 입력"
+                  placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={isLoading}
@@ -146,12 +146,12 @@ function LoginForm() {
               {isLoading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" strokeWidth={2.5} />
-                  <span>로그인 중...</span>
+                  <span>Logging in...</span>
                 </>
               ) : (
                 <>
                   <LogIn className="w-5 h-5" strokeWidth={2.5} />
-                  <span>로그인</span>
+                  <span>Login</span>
                 </>
               )}
             </button>
@@ -160,9 +160,9 @@ function LoginForm() {
           {/* Signup Link */}
           <div className="mt-6 text-center">
             <p className="text-neo-black/70">
-              아직 회원이 아니신가요?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/signup" className="font-bold text-neo-blue hover:underline">
-                회원가입
+                Sign up
               </Link>
             </p>
           </div>
@@ -171,15 +171,15 @@ function LoginForm() {
         {/* Footer */}
         <div className="mt-6 text-center">
           <p className="text-sm text-neo-black/70">
-            로그인하면{' '}
+            By logging in, you agree to our{' '}
             <Link href="/terms" className="font-bold text-neo-blue underline">
-              이용약관
+              Terms of Service
             </Link>
-            과{' '}
+            {' '}and{' '}
             <Link href="/privacy" className="font-bold text-neo-blue underline">
-              개인정보처리방침
+              Privacy Policy
             </Link>
-            에 동의하게 됩니다.
+            .
           </p>
         </div>
       </div>
@@ -201,9 +201,9 @@ function LoginPageSkeleton() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-black text-neo-black uppercase tracking-tight mb-2">
-            로그인
+            Login
           </h1>
-          <p className="text-base text-neo-black/70">Vibe Store에 오신 것을 환영합니다</p>
+          <p className="text-base text-neo-black/70">Welcome to Vibe Store</p>
         </div>
         <div className="bg-neo-white border-3 border-neo-black shadow-neo p-6 sm:p-8 animate-pulse">
           <div className="h-12 bg-neo-cream mb-4 border-2 border-neo-black"></div>

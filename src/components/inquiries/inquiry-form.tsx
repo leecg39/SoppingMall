@@ -1,5 +1,5 @@
 /**
- * Inquiry Form Component - Neo-Brutalism 디자인
+ * Inquiry Form Component - Neo-Brutalism Design
  */
 
 'use client';
@@ -68,12 +68,12 @@ export function InquiryForm({
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error?.message || '문의 작성에 실패했습니다.');
+        throw new Error(data.error?.message || 'Failed to submit inquiry.');
       }
 
       toast({
-        title: '문의가 등록되었습니다',
-        description: '빠른 시일 내에 답변드리겠습니다.',
+        title: 'Inquiry has been submitted',
+        description: 'We will respond as soon as possible.',
       });
 
       if (onSuccess) {
@@ -84,9 +84,9 @@ export function InquiryForm({
     } catch (error) {
       console.error('Inquiry submission error:', error);
       toast({
-        title: '문의 등록 실패',
+        title: 'Inquiry Submission Failed',
         description:
-          error instanceof Error ? error.message : '문의 등록에 실패했습니다.',
+          error instanceof Error ? error.message : 'Failed to submit inquiry.',
         variant: 'destructive',
       });
     } finally {
@@ -96,18 +96,18 @@ export function InquiryForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {/* 상품 정보 (있는 경우) */}
+      {/* Product Information (if applicable) */}
       {productName && (
         <div className="p-4 bg-neo-cream border-3 border-neo-black">
-          <p className="text-sm text-neo-black/60 font-bold">문의 상품</p>
+          <p className="text-sm text-neo-black/60 font-bold">Inquiry Product</p>
           <p className="font-black text-neo-black">{productName}</p>
         </div>
       )}
 
-      {/* 카테고리 선택 */}
+      {/* Category Selection */}
       <div className="space-y-2">
         <label className="block text-sm font-black uppercase text-neo-black">
-          문의 유형
+          Inquiry Type
         </label>
         <div className="relative">
           <select
@@ -123,21 +123,21 @@ export function InquiryForm({
           </select>
           <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neo-black pointer-events-none" strokeWidth={2.5} />
         </div>
-        <p className="text-sm text-neo-black/60">문의 내용에 맞는 유형을 선택해주세요.</p>
+        <p className="text-sm text-neo-black/60">Please select the type that matches your inquiry.</p>
         {errors.category && (
           <p className="text-sm font-bold text-neo-pink">{errors.category.message}</p>
         )}
       </div>
 
-      {/* 제목 */}
+      {/* Title */}
       <div className="space-y-2">
         <label className="block text-sm font-black uppercase text-neo-black">
-          제목
+          Title
         </label>
         <input
           type="text"
           {...register('title')}
-          placeholder="문의 제목을 입력하세요"
+          placeholder="Enter inquiry title"
           className="w-full px-4 py-3 bg-neo-white border-3 border-neo-black font-medium text-neo-black placeholder:text-neo-black/40 focus:outline-none focus:ring-2 focus:ring-neo-blue"
           disabled={isSubmitting}
         />
@@ -146,27 +146,27 @@ export function InquiryForm({
         )}
       </div>
 
-      {/* 내용 */}
+      {/* Content */}
       <div className="space-y-2">
         <label className="block text-sm font-black uppercase text-neo-black">
-          내용
+          Content
         </label>
         <textarea
           {...register('content')}
-          placeholder="문의 내용을 상세히 입력해주세요 (최소 10자)"
+          placeholder="Please enter your inquiry in detail (minimum 10 characters)"
           rows={8}
           className="w-full px-4 py-3 bg-neo-white border-3 border-neo-black font-medium text-neo-black placeholder:text-neo-black/40 resize-none focus:outline-none focus:ring-2 focus:ring-neo-blue"
           disabled={isSubmitting}
         />
         <p className="text-sm text-neo-black/60">
-          문의 내용을 자세히 작성하시면 더 정확한 답변을 받으실 수 있습니다.
+          The more detailed your inquiry, the more accurate response you will receive.
         </p>
         {errors.content && (
           <p className="text-sm font-bold text-neo-pink">{errors.content.message}</p>
         )}
       </div>
 
-      {/* 비밀글 옵션 */}
+      {/* Private Post Option */}
       <label className="flex items-start gap-4 p-4 bg-neo-cream border-3 border-neo-black cursor-pointer hover:bg-neo-yellow/30 transition-colors">
         <input
           type="checkbox"
@@ -177,10 +177,10 @@ export function InquiryForm({
         <div className="flex-1">
           <div className="flex items-center gap-2 font-black text-neo-black">
             <Lock className="w-5 h-5" strokeWidth={2.5} />
-            비밀글로 작성
+            Write as Private Post
           </div>
           <p className="text-sm text-neo-black/60 mt-1">
-            비밀글로 설정하면 작성자와 관리자만 내용을 볼 수 있습니다.
+            If set as private, only the author and admin can view the content.
           </p>
         </div>
       </label>
@@ -194,7 +194,7 @@ export function InquiryForm({
             disabled={isSubmitting}
             className="px-6 py-3 bg-neo-white text-neo-black border-3 border-neo-black shadow-neo font-bold uppercase hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-neo-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            취소
+            Cancel
           </button>
         )}
         <button
@@ -203,7 +203,7 @@ export function InquiryForm({
           className="px-6 py-3 bg-neo-blue text-white border-3 border-neo-black shadow-neo font-bold uppercase hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-neo-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
           {isSubmitting && <Loader2 className="w-5 h-5 animate-spin" />}
-          {isSubmitting ? '등록 중...' : '문의 등록'}
+          {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
         </button>
       </div>
     </form>

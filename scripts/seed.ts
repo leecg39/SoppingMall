@@ -33,37 +33,37 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey, {
 });
 
 /**
- * 샘플 카테고리 데이터
+ * Sample category data
  */
 const sampleCategories = [
   {
     slug: 'digital-products',
-    name: '디지털 상품',
-    description: '다운로드 가능한 디지털 콘텐츠',
+    name: 'Digital Products',
+    description: 'Downloadable digital content',
     parent_id: null,
     sort_order: 1,
     is_active: true,
   },
   {
     slug: 'templates',
-    name: '템플릿',
-    description: '웹/앱 템플릿 및 UI 키트',
+    name: 'Templates',
+    description: 'Web/App templates and UI kits',
     parent_id: null,
     sort_order: 2,
     is_active: true,
   },
   {
     slug: 'ebooks',
-    name: '전자책',
-    description: '프로그래밍 및 디자인 전자책',
+    name: 'E-books',
+    description: 'Programming and design e-books',
     parent_id: null,
     sort_order: 3,
     is_active: true,
   },
   {
     slug: 'courses',
-    name: '강의',
-    description: '온라인 강의 및 튜토리얼',
+    name: 'Courses',
+    description: 'Online courses and tutorials',
     parent_id: null,
     sort_order: 4,
     is_active: true,
@@ -71,13 +71,13 @@ const sampleCategories = [
 ];
 
 /**
- * 샘플 상품 데이터
+ * Sample product data
  */
 const sampleProducts = [
   {
     slug: 'nextjs-ecommerce-template',
     name: 'Next.js E-commerce Template',
-    description: 'Next.js 15 + Supabase + Toss Payments를 활용한 풀스택 이커머스 템플릿입니다.\n\n## 주요 기능\n- 상품 관리\n- 장바구니\n- 토스 페이먼츠 결제\n- 관리자 대시보드\n\n## 기술 스택\n- Next.js 15 (App Router)\n- Supabase (Auth, Database, Storage)\n- Toss Payments\n- shadcn/ui\n- Tailwind CSS',
+    description: 'Full-stack e-commerce template using Next.js 15 + Supabase + Toss Payments.\n\n## Key Features\n- Product Management\n- Shopping Cart\n- Toss Payments Integration\n- Admin Dashboard\n\n## Tech Stack\n- Next.js 15 (App Router)\n- Supabase (Auth, Database, Storage)\n- Toss Payments\n- shadcn/ui\n- Tailwind CSS',
     price: 50000,
     sale_price: 39000,
     is_featured: true,
@@ -88,7 +88,7 @@ const sampleProducts = [
   {
     slug: 'react-dashboard-ui-kit',
     name: 'React Dashboard UI Kit',
-    description: 'React 19 기반의 관리자 대시보드 UI 키트입니다.\n\n## 포함 내용\n- 50+ 컴포넌트\n- 반응형 레이아웃\n- 다크 모드 지원\n- TypeScript',
+    description: 'Admin dashboard UI kit based on React 19.\n\n## Includes\n- 50+ Components\n- Responsive Layout\n- Dark Mode Support\n- TypeScript',
     price: 30000,
     sale_price: null,
     is_featured: true,
@@ -98,8 +98,8 @@ const sampleProducts = [
   },
   {
     slug: 'typescript-guide-ebook',
-    name: 'TypeScript 완벽 가이드',
-    description: 'TypeScript를 처음 배우는 개발자를 위한 완벽 가이드 전자책입니다.\n\n## 목차\n1. TypeScript 기초\n2. 타입 시스템\n3. 고급 타입\n4. 실전 프로젝트\n\n총 250페이지, PDF 형식',
+    name: 'TypeScript Complete Guide',
+    description: 'Complete guide e-book for developers new to TypeScript.\n\n## Table of Contents\n1. TypeScript Basics\n2. Type System\n3. Advanced Types\n4. Real-world Projects\n\n250 pages total, PDF format',
     price: 15000,
     sale_price: 12000,
     is_featured: false,
@@ -110,7 +110,7 @@ const sampleProducts = [
   {
     slug: 'supabase-masterclass',
     name: 'Supabase Masterclass',
-    description: 'Supabase를 활용한 풀스택 개발 강의입니다.\n\n## 강의 내용\n- Supabase 기초\n- Auth 시스템 구축\n- RLS 정책 설정\n- Storage 활용\n- Realtime 기능\n\n총 12시간, 동영상 강의',
+    description: 'Full-stack development course using Supabase.\n\n## Course Content\n- Supabase Basics\n- Auth System Setup\n- RLS Policy Configuration\n- Storage Usage\n- Realtime Features\n\n12 hours total, video course',
     price: 80000,
     sale_price: 64000,
     is_featured: true,
@@ -121,7 +121,7 @@ const sampleProducts = [
 ];
 
 /**
- * 샘플 태그 데이터
+ * Sample tag data
  */
 const sampleTags = [
   { name: 'Next.js' },
@@ -130,8 +130,8 @@ const sampleTags = [
   { name: 'Supabase' },
   { name: 'Tailwind CSS' },
   { name: 'UI/UX' },
-  { name: '전자책' },
-  { name: '강의' },
+  { name: 'E-book' },
+  { name: 'Course' },
 ];
 
 /**
@@ -244,12 +244,12 @@ async function linkProductTags(products: any[], tags: any[]) {
     // TypeScript Guide
     [
       { product_id: products[2].id, tag_id: tagMap['TypeScript'] },
-      { product_id: products[2].id, tag_id: tagMap['전자책'] },
+      { product_id: products[2].id, tag_id: tagMap['E-book'] },
     ],
     // Supabase Masterclass
     [
       { product_id: products[3].id, tag_id: tagMap['Supabase'] },
-      { product_id: products[3].id, tag_id: tagMap['강의'] },
+      { product_id: products[3].id, tag_id: tagMap['Course'] },
     ],
   ].flat();
 

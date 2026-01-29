@@ -56,3 +56,14 @@
 @utility border-r-3 {
   border-right-width: 3px;
 }
+
+/* Scrollbar hide utility */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

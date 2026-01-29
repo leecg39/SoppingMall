@@ -1,6 +1,6 @@
 /**
- * Signup Page - 회원가입
- * Neo-Brutalism 디자인
+ * Signup Page
+ * Neo-Brutalism Design
  */
 
 'use client';
@@ -28,22 +28,22 @@ export default function SignupPage() {
     setError(null);
 
     if (!email) {
-      setError('이메일을 입력해주세요');
+      setError('Please enter your email');
       return;
     }
 
     if (!password) {
-      setError('비밀번호를 입력해주세요');
+      setError('Please enter your password');
       return;
     }
 
     if (password.length < 6) {
-      setError('비밀번호는 최소 6자 이상이어야 합니다');
+      setError('Password must be at least 6 characters');
       return;
     }
 
     if (password !== confirmPassword) {
-      setError('비밀번호가 일치하지 않습니다');
+      setError('Passwords do not match');
       return;
     }
 
@@ -60,11 +60,11 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || '회원가입 중 오류가 발생했습니다');
+        setError(data.error || 'An error occurred during signup');
         return;
       }
 
-      // 2. 회원가입 성공 후 자동 로그인
+      // 2. Auto login after successful signup
       const signInResult = await signIn('credentials', {
         email,
         password,
@@ -72,14 +72,14 @@ export default function SignupPage() {
       });
 
       if (signInResult?.error) {
-        // 로그인 실패해도 회원가입은 성공했으므로 성공 페이지 표시
+        // Even if login fails, signup was successful, so show success page
         setSuccess(true);
       } else {
-        // 로그인 성공 시 홈으로 리다이렉트
+        // Redirect to home on successful login
         router.push('/');
       }
     } catch (err) {
-      setError('회원가입 중 오류가 발생했습니다');
+      setError('An error occurred during signup');
     } finally {
       setIsLoading(false);
     }
@@ -94,18 +94,18 @@ export default function SignupPage() {
               <UserPlus className="w-10 h-10 text-neo-black" strokeWidth={2.5} />
             </div>
             <h1 className="text-2xl font-black uppercase text-neo-black mb-4">
-              회원가입 완료!
+              Signup Complete!
             </h1>
             <p className="text-neo-black/70 mb-6">
-              회원가입이 완료되었습니다.
+              Your account has been created successfully.
               <br />
-              로그인하여 서비스를 이용해주세요.
+              Please log in to continue.
             </p>
             <Link
               href="/login"
               className="inline-flex items-center gap-2 px-6 py-3 bg-neo-blue text-white border-3 border-neo-black shadow-neo font-bold uppercase hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-neo-sm transition-all"
             >
-              로그인 페이지로
+              Go to Login
             </Link>
           </div>
         </div>
@@ -119,10 +119,10 @@ export default function SignupPage() {
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-black text-neo-black uppercase tracking-tight mb-2">
-            회원가입
+            Sign Up
           </h1>
           <p className="text-base text-neo-black/70">
-            Vibe Store의 회원이 되어주세요
+            Join Vibe Store today
           </p>
         </div>
 
@@ -143,7 +143,7 @@ export default function SignupPage() {
                 htmlFor="email"
                 className="block text-sm font-black uppercase text-neo-black"
               >
-                이메일 *
+                Email *
               </label>
               <input
                 id="email"
@@ -163,12 +163,12 @@ export default function SignupPage() {
                 htmlFor="nickname"
                 className="block text-sm font-black uppercase text-neo-black"
               >
-                닉네임
+                Nickname
               </label>
               <input
                 id="nickname"
                 type="text"
-                placeholder="닉네임 (선택)"
+                placeholder="Nickname (optional)"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
                 disabled={isLoading}
@@ -183,13 +183,13 @@ export default function SignupPage() {
                 htmlFor="password"
                 className="block text-sm font-black uppercase text-neo-black"
               >
-                비밀번호 *
+                Password *
               </label>
               <div className="relative">
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  placeholder="최소 6자 이상"
+                  placeholder="Minimum 6 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={isLoading}
@@ -216,12 +216,12 @@ export default function SignupPage() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-black uppercase text-neo-black"
               >
-                비밀번호 확인 *
+                Confirm Password *
               </label>
               <input
                 id="confirmPassword"
                 type={showPassword ? 'text' : 'password'}
-                placeholder="비밀번호 재입력"
+                placeholder="Re-enter password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={isLoading}
@@ -239,12 +239,12 @@ export default function SignupPage() {
               {isLoading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" strokeWidth={2.5} />
-                  <span>가입 중...</span>
+                  <span>Signing up...</span>
                 </>
               ) : (
                 <>
                   <UserPlus className="w-5 h-5" strokeWidth={2.5} />
-                  <span>회원가입</span>
+                  <span>Sign Up</span>
                 </>
               )}
             </button>
@@ -253,9 +253,9 @@ export default function SignupPage() {
           {/* Login Link */}
           <div className="mt-6 text-center">
             <p className="text-neo-black/70">
-              이미 회원이신가요?{' '}
+              Already have an account?{' '}
               <Link href="/login" className="font-bold text-neo-blue hover:underline">
-                로그인
+                Log in
               </Link>
             </p>
           </div>

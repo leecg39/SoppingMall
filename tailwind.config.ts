@@ -44,6 +44,17 @@ const config: Config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
 
+        // VERSPA Brand Colors
+        'brand-primary': '#f59e0b', // amber-500
+        'background-light': '#f8f7f5',
+        'background-dark': '#181511',
+        'surface-dark': '#27231b',
+        'surface-light': '#ffffff',
+        'text-muted': '#baaf9c',
+        'border-dark': '#393328',
+        'input-bg': '#1c1914',
+        'input-border': '#393328',
+
         // Neo-Brutalism Primary Colors
         'neo-blue': '#0066FF',
         'neo-pink': '#FF3366',

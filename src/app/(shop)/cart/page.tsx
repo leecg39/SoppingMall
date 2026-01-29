@@ -24,16 +24,33 @@ import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 /**
  * Convert price to $2000-3000 USD range with consistent random variation
  */
-function formatPrice(price: number): string {
+function convertToUSD(price: number): number {
   const seed = price % 1000;
   const randomPrice = 2000 + (seed * 1.5);
-  const usdPrice = Math.round(randomPrice);
-  return `$${usdPrice.toLocaleString('en-US')}`;
+  return Math.round(randomPrice);
+}
+
+/**
+ * Format USD price
+ */
+function formatPrice(price: number): string {
+  return `$${price.toLocaleString('en-US')}`;
 }
 
 export default function CartPage() {
   const router = useRouter();
-  const { items, total, isLoading, updateQuantity, removeItem } = useCart();
+  const { items, isLoading, updateQuantity, removeItem } = useCart();
+
+  // Calculate total with converted USD prices
+  const calculateDisplayTotal = () => {
+    return items.reduce((sum, item) => {
+      const price = item.product.discount_price ?? item.product.price;
+      const usdPrice = convertToUSD(price);
+      return sum + (usdPrice * item.quantity);
+    }, 0);
+  };
+
+  const displayTotal = calculateDisplayTotal();
 
   // Empty cart
   if (!isLoading && items.length === 0) {
@@ -96,6 +113,8 @@ export default function CartPage() {
             {items.map((item) => {
               const price = item.product.discount_price ?? item.product.price;
               const hasDiscount = item.product.discount_price !== null;
+              const usdPrice = convertToUSD(price);
+              const usdOriginalPrice = convertToUSD(item.product.price);
 
               return (
                 <Card
@@ -129,11 +148,11 @@ export default function CartPage() {
                       {/* Price */}
                       <div className="mt-2 flex items-baseline gap-2">
                         <span className="text-xl font-black text-neo-blue">
-                          {formatPrice(price)}
+                          {formatPrice(usdPrice)}
                         </span>
                         {hasDiscount && (
                           <span className="text-sm text-neo-black/50 line-through">
-                            {formatPrice(item.product.price)}
+                            {formatPrice(usdOriginalPrice)}
                           </span>
                         )}
                       </div>
@@ -193,14 +212,14 @@ export default function CartPage() {
                 <div className="flex justify-between">
                   <span className="text-neo-black/70">Subtotal</span>
                   <span className="font-bold text-neo-black">
-                    {formatPrice(total)}
+                    {formatPrice(displayTotal)}
                   </span>
                 </div>
                 <div className="border-t-2 border-neo-black pt-3">
                   <div className="flex justify-between items-baseline">
                     <span className="text-lg font-bold text-neo-black">Total</span>
                     <span className="text-2xl font-black text-neo-blue">
-                      {formatPrice(total)}
+                      {formatPrice(displayTotal)}
                     </span>
                   </div>
                 </div>
