@@ -53,14 +53,30 @@ export default async function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <header className="relative w-full min-h-[600px] lg:h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background with Premium Gray Overlay */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(15, 18, 22, 0.82), rgba(10, 12, 16, 0.92)), url(/products/verspa-basic/20220331 컴헤어(연출)-0577.jpg)'
-          }}
-        ></div>
+      <header className="relative w-full min-h-[600px] lg:h-[85vh] flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        {/* Premium Dark Background with Subtle Gradient */}
+        <div className="absolute inset-0 z-0">
+          {/* Base Gradient Layer */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0d0d0d]"></div>
+          {/* Ambient Glow Effect */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/3 rounded-full blur-[100px]"></div>
+          {/* Subtle Noise Texture */}
+          <div className="absolute inset-0 opacity-[0.02]" style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")'
+          }}></div>
+          {/* Background Image with Premium Overlay */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+            style={{
+              backgroundImage: 'url(/products/verspa-basic/20220331 컴헤어(연출)-0577.jpg)'
+            }}
+          ></div>
+          {/* Strong Dark Overlay for Luxury Dark Theme */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>
+          {/* Vignette Effect */}
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/20 to-black/80"></div>
+        </div>
 
         <div className="relative z-10 container mx-auto px-6 lg:px-40 flex flex-col items-center text-center gap-8">
           <span className="uppercase tracking-[0.2em] text-primary text-sm font-bold animate-fade-in drop-shadow-lg">
