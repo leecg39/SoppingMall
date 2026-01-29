@@ -6,11 +6,10 @@
 
 import { redirect } from 'next/navigation';
 
-export default function LegacyLoginPage({
-  searchParams,
-}: {
-  searchParams: { redirect?: string; callbackUrl?: string };
+export default async function LegacyLoginPage(props: {
+  searchParams: Promise<{ redirect?: string; callbackUrl?: string }>;
 }) {
+  const searchParams = await props.searchParams;
   const redirectParam = searchParams.redirect || searchParams.callbackUrl || '/';
 
   // Redirect to the new NextAuth login page
