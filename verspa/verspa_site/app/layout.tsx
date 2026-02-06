@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import './globals.css';
@@ -44,6 +45,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className="dark scroll-smooth">
+            <head>
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-R2C2VG9GKQ" strategy="afterInteractive" />
+                <Script id="gtag-init" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-R2C2VG9GKQ');
+                    `}
+                </Script>
+            </head>
             <body className={`${inter.variable} font-sans antialiased bg-background-dark text-white selection:bg-primary selection:text-background-dark flex flex-col min-h-screen`}>
                 <Header />
                 <main className="flex-grow">

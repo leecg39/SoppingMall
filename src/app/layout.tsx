@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -31,6 +32,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-R2C2VG9GKQ" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R2C2VG9GKQ');
+          `}
+        </Script>
+      </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-neo-white text-neo-black`}
       >
