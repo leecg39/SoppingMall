@@ -1,0 +1,34 @@
+{
+    "certifications": [
+        {
+            "id": "kc-cert",
+            "name": "KC Certification",
+            "type": "certification",
+            "icon": "shield",
+            "pdfPath": "/pdfs/certificates/kc-cert.pdf",
+            "issuedBy": "Korea Testing Laboratory",
+            "year": 2019,
+            "order": 1
+        },
+        {
+            "id": "ce-cert",
+            "name": "CE Certification",
+            "type": "certification",
+            "icon": "shield",
+            "pdfPath": "/pdfs/certificates/ce-cert.pdf",
+            "issuedBy": "European Union",
+            "year": 2020,
+            "order": 2
+        },
+        {
+            "id": "patent-rail-reclining",
+            "name": "Rail-Based Reclining System",
+            "type": "patent",
+            "icon": "award",
+            "pdfPath": "/pdfs/patents/rail-system.pdf",
+            "issuedBy": "Korean Intellectual Property Office",
+            "year": 2022,
+            "order": 11
+        }
+    ]
+}

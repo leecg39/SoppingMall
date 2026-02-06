@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@layer base {
+  :root {
+    /* Dark Luxury Theme - VERSPA Style */
+    --background: 20 16% 8%;
+    --foreground: 0 0% 100%;
+    --card: 22 18% 11%;
+    --card-foreground: 0 0% 100%;
+    --popover: 22 18% 11%;
+    --popover-foreground: 0 0% 100%;
+    /* Amber/Gold Primary */
+    --primary: 38 92% 50%;
+    --primary-foreground: 20 16% 8%;
+    --secondary: 38 80% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 20 16% 8%;
+    --muted: 22 18% 15%;
+    --muted-foreground: 30 10% 60%;
+    --border: 30 10% 20%;
+    --input: 22 18% 13%;
+    --ring: 38 92% 50%;
+    --radius: 0.75rem;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+/* Border width utilities */
+@utility border-3 {
+  border-width: 3px;
+}
+@utility border-b-3 {
+  border-bottom-width: 3px;
+}
+@utility border-t-3 {
+  border-top-width: 3px;
+}
+@utility border-y-3 {
+  border-top-width: 3px;
+  border-bottom-width: 3px;
+}
+@utility border-l-3 {
+  border-left-width: 3px;
+}
+@utility border-r-3 {
+  border-right-width: 3px;
+}
+
+/* Scrollbar hide utility */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

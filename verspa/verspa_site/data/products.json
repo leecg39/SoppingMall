@@ -1,0 +1,102 @@
+{
+    "products": [
+        {
+            "id": "verspa-basic",
+            "name": "VERSPA BASIC",
+            "tagline": "Best of the Best",
+            "description": "Our best-selling product designed specifically for head spas, loved by hair salons, beauty care shops, and waxing salons worldwide.",
+            "badge": "NO.1 IN SALES",
+            "features": [
+                "5-Point Massage System",
+                "Leg Reclining Function",
+                "Optimized for Head Spa"
+            ],
+            "specs": {
+                "dimensions": "1900 x 840 x 830 mm",
+                "weight": "66.5 kg",
+                "voltage": "AC 220-240V, 50-60Hz",
+                "warranty": "3 years",
+                "massagePoints": 5,
+                "reclining": "Leg Reclining"
+            },
+            "colors": [
+                "Black",
+                "Desert Brown",
+                "Gray Beige"
+            ],
+            "images": {
+                "hero": "/images/products/verspa-basic.jpg.png",
+                "gallery": [
+                    "/images/products/verspa-basic.jpg.png"
+                ]
+            },
+            "pdfCatalog": "/pdfs/verspa-basic-en.pdf",
+            "order": 1,
+            "featured": true
+        },
+        {
+            "id": "verspa-zenith",
+            "name": "VERSPA ZENITH",
+            "tagline": "4th Generation Smart Chair",
+            "description": "Revolutionary AI-powered massage system with real-time remote monitoring and rail-based reclining technology.",
+            "badge": "NEW TECHNOLOGY",
+            "features": [
+                "AI Anomaly Detection",
+                "Rail Reclining System",
+                "Full Touch Screen Control"
+            ],
+            "specs": {
+                "dimensions": "2200 x 850 x 1080 mm",
+                "weight": "73 kg (main unit)",
+                "voltage": "AC 220-240V, 50-60Hz",
+                "warranty": "3 years",
+                "massagePoints": 4,
+                "reclining": "Main Unit + Leg Reclining"
+            },
+            "colors": [
+                "Black",
+                "Brown",
+                "Beige"
+            ],
+            "images": {
+                "hero": "/images/products/verspa-zenith.jpg.png",
+                "gallery": [
+                    "/images/products/verspa-zenith.jpg.png"
+                ]
+            },
+            "pdfCatalog": "/pdfs/verspa-zenith-en.pdf",
+            "order": 2,
+            "featured": true
+        },
+        {
+            "id": "verspa-accessory",
+            "name": "ACCESSORY",
+            "tagline": "Essential Add-ons",
+            "description": "Premium accessories to enhance your VERSPA experience. Quality headrests, armrests, and replacement parts for optimal performance.",
+            "badge": "ACCESSORIES",
+            "features": [
+                "Premium Headrests",
+                "Replacement Parts",
+                "Easy Installation"
+            ],
+            "specs": {
+                "warranty": "1 year",
+                "compatibility": "All VERSPA Models"
+            },
+            "colors": [
+                "Black",
+                "Brown",
+                "Beige"
+            ],
+            "images": {
+                "hero": "/images/products/accessory.jpg.jpg",
+                "gallery": [
+                    "/images/products/accessory.jpg.jpg"
+                ]
+            },
+            "pdfCatalog": "/pdfs/verspa-accessory-en.pdf",
+            "order": 3,
+            "featured": true
+        }
+    ]
+}

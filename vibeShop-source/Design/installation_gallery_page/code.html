@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R2C2VG9GKQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R2C2VG9GKQ');
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VERSPA - Installation Gallery</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f59f0a",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                        "surface-dark": "#2d261a", // Slightly lighter for cards/surfaces
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #221c10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #393328;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59f0a;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#181511] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-solid border-[#393328] bg-background-dark/95 backdrop-blur-md">
+<div class="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined !text-[24px]">chair</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">VERSPA</h2>
+</div>
+<!-- Desktop Nav -->
+<div class="hidden lg:flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-9">
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Products</a>
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Technology</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Installations</a>
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Support</a>
+<a class="text-gray-300 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Contact</a>
+</nav>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary hover:bg-amber-600 text-background-dark text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Request Quote</span>
+</button>
+</div>
+<!-- Mobile Menu Icon -->
+<div class="lg:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center w-full">
+<!-- Page Heading & Hero -->
+<section class="w-full max-w-[1200px] px-6 lg:px-10 py-12 lg:py-16">
+<div class="flex flex-col gap-4 max-w-3xl">
+<h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                    Global Installations
+                </h1>
+<p class="text-[#baaf9c] text-lg font-normal leading-relaxed max-w-2xl">
+                    Witness the integration of luxury and ergonomics in salons worldwide. 
+                    Explore how top-tier establishments are redefining the client experience with VERSPA.
+                </p>
+</div>
+</section>
+<!-- Filters -->
+<section class="w-full sticky top-16 z-40 bg-background-dark/95 backdrop-blur border-b border-[#393328] py-4">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-10">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap gap-3">
+<!-- Filter Group 1: Models -->
+<div class="flex items-center bg-surface-dark rounded-xl p-1 border border-[#393328]">
+<button class="px-4 py-2 rounded-lg bg-[#393328] text-white text-sm font-medium shadow-sm transition-all">
+                                All Models
+                            </button>
+<button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white text-sm font-medium transition-all">
+                                V-Series
+                            </button>
+<button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white text-sm font-medium transition-all">
+                                Relax Pro
+                            </button>
+</div>
+<!-- Divider -->
+<div class="hidden sm:block w-px h-8 bg-[#393328] self-center mx-1"></div>
+<!-- Filter Group 2: Regions (Dropdown Style) -->
+<button class="group flex h-10 items-center justify-center gap-x-2 rounded-xl border border-[#393328] bg-surface-dark pl-4 pr-3 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary text-[20px]">public</span>
+<span class="text-gray-300 text-sm font-medium">All Regions</span>
+<span class="material-symbols-outlined text-gray-400 text-[20px]">expand_more</span>
+</button>
+</div>
+<!-- Result Count -->
+<p class="text-[#baaf9c] text-sm font-medium hidden md:block">Showing 42 installations</p>
+</div>
+</div>
+</section>
+<!-- Gallery Grid -->
+<section class="w-full max-w-[1200px] px-6 lg:px-10 py-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Gallery Item 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-dark aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/10 transition-shadow">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Modern salon interior with sleek black chairs and warm lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFrZnkgKgBKTCXW82bXpEkgMN0P6RG9JBmwxwM6zk9kGkCT_D5vr3joVfOPvbdkkQmaDKl2i2hW9vCwR_aG51k_J2-2zil0qskU7AmQ24lTgJzB2_-qR6-oXfyXOpspai1WElxQ3grZNpH6geFR-q30eFHUJ6p4eVe2FnmTIs6jUTPZZK74OY87wX9PZerF1esr95oOsYVx3MMgsDOOVAUdZOqpbd2rCd6D1WeT-Trw5nRdN4QcBh4nyUVGltFYeXbNm2agdj81us');">
+</div>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+<!-- Content -->
+<div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Tokyo, Japan</p>
+<h3 class="text-white text-lg font-bold leading-tight">Luxe Hair Studio</h3>
+</div>
+<div class="size-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity delay-75">
+<span class="material-symbols-outlined">fullscreen</span>
+</div>
+</div>
+<div class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all">
+<p class="text-gray-300 text-sm line-clamp-2">Featuring the V-Series 300 in Matte Black. A perfect blend of minimalism and comfort.</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-dark aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/10 transition-shadow">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Bright and airy spa room with white massage chairs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYksN2-Xif9_74apDGV1_moWkbKZjQc4RFtTrOKuEH_MH50Wwi6YO3ME7VHTVCI2torO67UhJ-3ejPIL569vRdUBeco61agsdnxiGdzw8XmSey20ljn8h1vMlncVvgrPuhbIwAc7RddNNGAQf81ZlfelBCkKKStJJTx9FOtZhxZbz4-J05Pqzn0BcWH2wpkcNHuSdGveXc-ydyf4im6HW5GsWzDC2aSrX0oPLd4N7xd4clFUIkj8jJ61mR8TnTuEUM9yxPEwta2B4');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">New York, USA</p>
+<h3 class="text-white text-lg font-bold leading-tight">Bliss Spa Collective</h3>
+</div>
+<div class="size-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity delay-75">
+<span class="material-symbols-outlined">fullscreen</span>
+</div>
+</div>
+<div class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all">
+<p class="text-gray-300 text-sm line-clamp-2">Relax Pro installation with custom gold trim finish.</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-dark aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/10 transition-shadow">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Scandanavian style salon with wooden floors and grey chairs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrOIhfokqnmBXy1cg_g2efzSYkmTO10lGFxHnDxL5UmCoeR09BzYMNIcZiYW9ih1f8L1fCi2rJ5KyN5IigtxuDp3e2kvYrhNbTHnd2tQtGewoAUqlo634GBBB-bgqeqYWAwznT50Wvs5_gC3XQHl9PGxfMwQwfGCxEmttp9EyZjjfSWAutkVZ-UcjBLJSXNmyeG2q947bvEy7zWh1HijoHdBfhj7xLSOxqx4VAXytjuwTheN3fhUgooK27aadbBXFHSTTEhwjKbyE');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Stockholm, Sweden</p>
+<h3 class="text-white text-lg font-bold leading-tight">Nordic Salon</h3>
+</div>
+<div class="size-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity delay-75">
+<span class="material-symbols-outlined">fullscreen</span>
+</div>
+</div>
+<div class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all">
+<p class="text-gray-300 text-sm line-clamp-2">V-Series compact edition maximizing space in urban environments.</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 4 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-dark aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/10 transition-shadow">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Luxury dubai salon with marble floors and premium lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAK0NrsPCJLVI1Htbcik5kIqNKyj2SCDEKCi69V0nZ2Uwnu-0rrDeXc7f05Y871wG26t5ZKVic1JfPcQnxQ6GGVqO6_pACaCy45o4rVj2uLz8fxG7jHW01wEYBjllBLnVAGHXRyLnmudodI_l6U-uZ1ottOp-FC1DXinyYEIwMus37iNF6qw7SFKQ-rILg4gQE1sw5SrBGhRuT-UpOI8r2rMHz8-spQCRcV_GF8utng--qFQ_LD6QF0Vp4Vj0xFUF_gz9wnoe9U5Q');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Dubai, UAE</p>
+<h3 class="text-white text-lg font-bold leading-tight">Opulence Lounge</h3>
+</div>
+<div class="size-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity delay-75">
+<span class="material-symbols-outlined">fullscreen</span>
+</div>
+</div>
+<div class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all">
+<p class="text-gray-300 text-sm line-clamp-2">Custom leather upholstery for VIP private suites.</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 5 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-dark aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/10 transition-shadow">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Contemporary London salon with industrial chic design" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM7UtnZiYL20BQrIUTiuIdXipzYqfkb-BNPKiK4haGYwsx4u3OnX2jxhTXZR__-uyhX--hJT4xqakZxnS0pZ4ZWL_O4gvH-cZ6CRo_oly6lKsF66zWFeqF8aKfH1o5_zRKCgwzDs6T7zIs5sP9emPa4bctaZextVjcDHScrmK6EPDfDNbA9XyMXSAxzH4E0E0FoHaCFfjNxnhcTcPcD_ry_-Z2AgtqpPvNAI62Z9B9ggPtP8tItjdOTiRrAZt64xolOvbTPFYVLZk');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">London, UK</p>
+<h3 class="text-white text-lg font-bold leading-tight">Zenith Beauty</h3>
+</div>
+<div class="size-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity delay-75">
+<span class="material-symbols-outlined">fullscreen</span>
+</div>
+</div>
+<div class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all">
+<p class="text-gray-300 text-sm line-clamp-2">Relax Pro integration with automated wash systems.</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 6 -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-dark aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/10 transition-shadow">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Minimalist Canadian spa with natural light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCv-7S4N_1clYDjlQOSrcRkP-EbvoBT2iWhCF-2dvOSXvXXIv3cS1vM5t2fOspAfsNpSs4l0G11ItzPHisjV4oAbH9fOlx5vd20Tztc4bSwT7jkOfGSMTLmjYbN_SzMhYPGAgFyvsOn6k4R3JzTtXpakaGd9pFNCE4rT3WkMSaO_ypOyAfHGNeJsMjXFjdkzbtF0kXUPf9w5khLJTrV8OdkXoHg4-NM3FGSuZTWEtEMhJ1bUcFilAIgcGLrn__w6NvAEQQBnFHvdJQ');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Toronto, Canada</p>
+<h3 class="text-white text-lg font-bold leading-tight">Aurora Spa</h3>
+</div>
+<div class="size-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity delay-75">
+<span class="material-symbols-outlined">fullscreen</span>
+</div>
+</div>
+<div class="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all">
+<p class="text-gray-300 text-sm line-clamp-2">Full ergonomic setup for long-duration treatments.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pagination -->
+<section class="py-8 w-full max-w-[1200px] flex justify-center">
+<div class="flex items-center gap-2">
+<a class="flex size-10 items-center justify-center rounded-lg hover:bg-[#393328] transition-colors" href="#">
+<span class="material-symbols-outlined text-white text-[18px]">chevron_left</span>
+</a>
+<a class="flex size-10 items-center justify-center rounded-lg bg-primary text-background-dark text-sm font-bold shadow-lg shadow-primary/20" href="#">1</a>
+<a class="flex size-10 items-center justify-center rounded-lg text-white hover:bg-[#393328] text-sm font-normal transition-colors" href="#">2</a>
+<a class="flex size-10 items-center justify-center rounded-lg text-white hover:bg-[#393328] text-sm font-normal transition-colors" href="#">3</a>
+<span class="flex size-10 items-center justify-center text-gray-500 text-sm">...</span>
+<a class="flex size-10 items-center justify-center rounded-lg text-white hover:bg-[#393328] text-sm font-normal transition-colors" href="#">8</a>
+<a class="flex size-10 items-center justify-center rounded-lg hover:bg-[#393328] transition-colors" href="#">
+<span class="material-symbols-outlined text-white text-[18px]">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Bottom CTA -->
+<section class="w-full bg-gradient-to-r from-surface-dark to-background-dark border-t border-[#393328] py-16 mt-8">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-xl">
+<h2 class="text-white text-3xl font-bold mb-3">Ready to transform your salon?</h2>
+<p class="text-gray-400">Join the global network of premier establishments using VERSPA technology.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-xl border border-[#393328] text-white hover:bg-white/5 font-medium transition-colors">
+                        Download Catalog
+                    </button>
+<button class="px-6 py-3 rounded-xl bg-primary hover:bg-amber-600 text-background-dark font-bold shadow-lg shadow-primary/25 transition-all">
+                        Get a Quote
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-[#393328] py-12">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-white mb-6">
+<span class="material-symbols-outlined text-primary">chair</span>
+<span class="font-bold text-lg">VERSPA</span>
+</div>
+<p class="text-gray-500 text-sm leading-relaxed">
+                        Elevating the salon experience through innovative design and ergonomic excellence.
+                    </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Products</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">V-Series</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Relax Pro</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Company</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Distributors</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Contact</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Support</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sales</a></li>
+<li class="flex gap-4 mt-4">
+<a class="text-gray-500 hover:text-white" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-gray-500 hover:text-white" href="#"><span class="material-symbols-outlined">public</span></a>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-[#393328] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+<p>© 2024 VERSPA International. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-gray-400" href="#">Privacy Policy</a>
+<a class="hover:text-gray-400" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

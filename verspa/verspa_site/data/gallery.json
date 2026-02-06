@@ -1,0 +1,26 @@
+{
+    "installations": [
+        {
+            "id": "salon-paris-01",
+            "image": "/images/gallery/thumbs/paris-01.jpg.jpg",
+            "thumbnail": "/images/gallery/thumbs/paris-01.jpg.jpg",
+            "salonName": "Le Coiffeur Premium",
+            "location": "Paris, France",
+            "productId": "verspa-zenith",
+            "year": 2024,
+            "featured": true,
+            "order": 1
+        },
+        {
+            "id": "salon-la-02",
+            "image": "/images/gallery/thumbs/la-02.jpg.jpg",
+            "thumbnail": "/images/gallery/thumbs/la-02.jpg.jpg",
+            "salonName": "Private Salon",
+            "location": "Los Angeles, USA",
+            "productId": "verspa-basic",
+            "year": 2023,
+            "featured": true,
+            "order": 2
+        }
+    ]
+}
